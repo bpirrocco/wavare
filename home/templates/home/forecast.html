@@ -7,20 +7,7 @@
 
 {% block content %} 
 
-<header>
-    <div class="container">
-        <div class="logo">
-            <a href="{% url 'home' %}" class="logolink">Wavaré</a>
-        </div>
-        <nav>
-            <ul id="menu">
-                <li><a href="#0">{{ forecast.location }}</a></li>
-                <li><a href="#0">v Beaches</a></li>
-                <li><a href="#0">About</a></li>
-            </ul>
-        </nav>
-    </div>
-</header>
+{% include "home/header.html" %}
 
 <div class="content detail">
     <div class="h1box">
