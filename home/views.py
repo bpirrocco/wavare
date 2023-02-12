@@ -40,3 +40,8 @@ def forecast(request, location, date, interval):
     data_list = list(enumerate(data))
     # data = json.dumps(json_data)
     return render(request, "home/forecast.html", {"forecast": forecast, "data": data, "time_list": time_list, "date_list": date_list, "data_list": data_list})
+
+
+def location(request, id):
+    location = get_object_or_404(Location, pk = id)
+    return render(request, "home/location.html", {"location": location})

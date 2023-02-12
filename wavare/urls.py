@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, register_converter
 
-from home.views import welcome, nazare, forecast
+from home.views import welcome, nazare, forecast, location
 from home import converters
 
 register_converter(converters.DateConverter, 'date')
@@ -25,5 +25,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', welcome, name="home"),
     path('nazare', nazare, name="nazare"),
-    path('forecast/<int:location>/<date:date>/<str:interval>', forecast, name="forecast")
+    path('forecast/<int:location>/<date:date>/<str:interval>', forecast, name="forecast"),
+    path('location/<int:id>', location, name="location")
 ]

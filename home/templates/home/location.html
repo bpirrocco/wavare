@@ -1,2 +1,16 @@
 {% extends 'base.html' %}
 {% load static %}
+
+{% block title %} Wavare - {{ location.name }} {% endblock %} 
+{% block description %} {{ location.name }}'s Info and Forecasts {% endblock %} 
+
+{% block content %}
+
+{% include "home/header.html" %} 
+
+<h1>Hello World!</h1>
+
+
+{% include "home/footer.html" %}
+
+{% endblock %}
