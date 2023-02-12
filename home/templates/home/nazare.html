@@ -1,0 +1,85 @@
+{% extends "base.html" %} 
+{% load static %} 
+
+{% block title %} Wavare - Nazare {% endblock %} 
+{% block description %} Nazare Waves {% endblock %} 
+
+{% block content %} 
+
+<header>
+    <div class="container">
+        <div class="logo">
+            <a href="{% url 'home' %}" class="logolink">Wavaré</a>
+        </div>
+        <nav>
+            <ul id="menu">
+                <li><a href="#0">v Beaches</a></li>
+                <li><a href="#0">About</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<div class="content detail">
+    <div class="h1box">
+        <h1>Nazaré</h1>
+    </div>
+    <div class="imgboxmed">
+        <img src="{% static 'home/wave-icon3.webp' %}" alt="Wave Icon" class="mainicon">
+    </div>
+    <div class="scrollable">
+        <div class="cardbox">
+            <div class="card">
+                <a href="#0">
+                    <h2>2.4m</h2>
+                </a>
+                <p>2:00pm <br> 2/8</p>
+            </div>
+            <div class="card">
+                <a href="#0">
+                    <h2>2.5m</h2>
+                </a>
+                <p>3:00pm <br> 2/8</p>
+            </div>
+            <div class="card">
+                <a href="#0">
+                    <h2>2.6m</h2>
+                </a>
+                <p>4:00pm <br> 2/8</p>
+            </div>
+            <div class="card">
+                <a href="#0">
+                    <h2>2.6m</h2>
+                </a>
+                <p>5:00pm <br> 2/8</p>
+            </div>
+            <div class="card">
+                <a href="#0">
+                    <h2>2.7m</h2>
+                </a>
+                <p>6:00pm <br> 2/8</p>
+            </div>
+            <div class="card">
+                <a href="#0">
+                    <h2>2.6m</h2>
+                </a>
+                <p>7:00pm <br> 2/8</p>
+            </div>
+            <div class="card">
+                <a href="#0">
+                    <h2>2.5m</h2>
+                </a>
+                <p>8:00pm <br> 2/8</p>
+            </div>
+        </div>
+    </div><!-- scrollable -->
+</div><!-- content detail-->
+
+<footer>
+    <div class="footer">
+        <span class="copyright">&copy; Brandon Pirrocco {% now "Y" %}</span>
+        <a href="#0">Contact</a>
+    </div>
+</footer>
+
+{% endblock %} 

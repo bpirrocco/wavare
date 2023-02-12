@@ -1,0 +1,23 @@
+{% extends "base.html" %} 
+{% load static %}
+
+{% block title %} Wavare - Home {% endblock %} 
+{% block description %} Wavare homepage {% endblock %} 
+
+{% block content %}
+<div class="content">
+    <div class="titlebox">
+        <div class="textbox">
+            <h1>Wavaré</h1>
+            <h4>Find the biggest waves in the world.</h4>
+            
+        </div>
+        <div class="button">
+            <button class="homebutton"><a href="{% url 'forecast' location=1 date=urldate interval='hourly' %}">Check out Nazaré</a></button>
+        </div>
+    </div>
+    <div class="imgbox">
+        <img src="{% static 'home/wave.jpg' %}" alt="Big wave in Nazaré">
+    </div>  
+</div><!--- content -->
+{% endblock %} 

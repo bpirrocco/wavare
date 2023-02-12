@@ -1,0 +1,59 @@
+{% extends "base.html" %} 
+{% load static %} 
+{% load index %}
+
+{% block title %} Wavare - {{ forecast.location }} {% endblock %} 
+{% block description %} {{ forecast.location }}'s Biggest Waves {% endblock %} 
+
+{% block content %} 
+
+<header>
+    <div class="container">
+        <div class="logo">
+            <a href="{% url 'home' %}" class="logolink">Wavaré</a>
+        </div>
+        <nav>
+            <ul id="menu">
+                <li><a href="#0">{{ forecast.location }}</a></li>
+                <li><a href="#0">v Beaches</a></li>
+                <li><a href="#0">About</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<div class="content detail">
+    <div class="h1box">
+        <h1>{{ forecast.location }}</h1>
+    </div>
+    <div class="imgboxmed">
+        <img src="{% static 'home/wave-icon3.webp' %}" alt="Wave Icon" class="mainicon">
+    </div>
+    <div class="scrollable">
+        <div class="cardbox">
+            {% for idx, dict in data_list %}
+                <div class="card">
+                    <a href="#0">
+                        <h2>{{ dict.max_wave_height }}m</h2>
+                    </a>
+                    <p>
+                        <!-- {% for time in time_list %} {{ time }} {% endfor %}  -->
+                        {{ time_list|index:idx }}
+                        <br> 
+                        <!-- {% for date in date_list %} {{ date }}{% endfor %} -->
+                        {{ date_list|index:idx }}
+                    </p>
+                </div>
+            {% endfor %}               
+        </div>
+    </div><!-- scrollable -->
+</div><!-- content detail -->
+
+<footer>
+    <div class="footer">
+        <span class="copyright">&copy; Brandon Pirrocco {% now "Y" %}</span>
+        <a href="#0">Contact</a>
+    </div>
+</footer>
+
+{% endblock %}
