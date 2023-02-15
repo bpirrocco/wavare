@@ -1,14 +1,20 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %} Wavare - {{ location.name }} {% endblock %} 
-{% block description %} {{ location.name }}'s Info and Forecasts {% endblock %} 
+{% block title %} Wavare - Locations {% endblock %} 
+{% block description %} Location Info and Forecast Options {% endblock %} 
 
 {% block content %}
 
 {% include "home/header.html" %} 
 
-<h1>Hello World!</h1>
+<div class="content">
+    <div class="cardleft">
+        <h2> {{ location.1 }}</h2>
+        <!-- <label for="forecast">Forecast: </label> -->
+        {{ form }}
+    </div>
+</div>
 
 
 {% include "home/footer.html" %}

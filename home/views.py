@@ -1,10 +1,11 @@
 import json
 import datetime as dt
 
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 
 from .models import Location, Forecast
 from .common.util import functions
+from .forms import ForecastForm
 
 # import meteomatics.api as api
 
@@ -42,6 +43,6 @@ def forecast(request, location, date, interval):
     return render(request, "home/forecast.html", {"forecast": forecast, "data": data, "time_list": time_list, "date_list": date_list, "data_list": data_list})
 
 
-def location(request, id):
-    location = get_object_or_404(Location, pk = id)
-    return render(request, "home/location.html", {"location": location})
+def location(request):
+    form = ForecastForm()
+    return render(request, "home/location.html", {"form": form, "location": Location.objects.all()})

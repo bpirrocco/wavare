@@ -26,5 +26,6 @@ urlpatterns = [
     path('', welcome, name="home"),
     path('nazare', nazare, name="nazare"),
     path('forecast/<int:location>/<date:date>/<str:interval>', forecast, name="forecast"),
-    path('location/<int:id>', location, name="location")
+    path('location', location, name="location"),
+    # path('location/<int:id>', location, name="location")
 ]
