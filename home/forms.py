@@ -9,7 +9,7 @@ CHOICES = [
 ]
 
 class ForecastForm(forms.Form):
-    model_choice = forms.ChoiceField(
+    interval = forms.ChoiceField(
         choices = CHOICES,
         initial = 0)
 

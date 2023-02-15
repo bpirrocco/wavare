@@ -327,4 +327,20 @@ footer {
   font-size: 1.3rem;
   color: black;
   text-decoration: none;
+}
+
+.card {
+  font-size: 2rem;
+}
+
+label {
+  font-size: 2rem;
+}
+
+select {
+  font-size: 2rem;
+}
+
+button {
+  font-size: 2rem;
 }/*# sourceMappingURL=style.css.map */
