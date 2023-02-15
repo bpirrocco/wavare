@@ -121,6 +121,10 @@ h1 {
   font-weight: 100;
 }
 
+h2 {
+  font-size: 4rem;
+}
+
 h4 {
   /* background-color: bisque; */
   font-size: 1.8rem;
