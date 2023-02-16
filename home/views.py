@@ -44,5 +44,5 @@ def forecast(request, location, date, interval):
 
 
 def location(request):
-    form = ForecastForm()
-    return render(request, "home/location.html", {"form": form, "location": Location.objects.all()})
+    # form = ForecastForm()
+    return render(request, "home/location.html", {"location": Location.objects.all()})
