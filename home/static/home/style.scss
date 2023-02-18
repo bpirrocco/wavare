@@ -7,7 +7,8 @@
 body {
     font-family: "Montserrat";
     background-color: #effafd;
-    overflow: hidden;
+    // overflow: hidden;
+    scrollbar-color: #effafd;
 }
 
 .content {
@@ -123,6 +124,7 @@ h1 {
 
 h2 {
     font-size: 4rem;
+    font-weight: 100;
 }
 
 h4 {
@@ -362,8 +364,33 @@ footer {
 // Location Cards 
 // **************
 
+.location {
+    align-items: center;
+}
+
 .locationcard {
     font-size: 2rem;
+    // background-color: navy;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 40vw;
+    min-height: 25vh;
+    margin-bottom: 2rem;
+    padding: 0rem 2rem;
+    border-radius: 0.6rem;
+    box-shadow: 4px 4px 3px 2px rgba(black, 0.55);
+}
+
+.locationcard:not(:first-child) {
+    margin-top: 2rem;
+}
+
+.form {
+    width: 15rem;
+    margin: 1rem;
+    display: flex;
+    justify-content: space-around;
 }
 
 label {
@@ -371,9 +398,23 @@ label {
 }
 
 select {
-    font-size: 2rem;
+    font-size: 1.7rem;
+    height: 3rem;
+    padding: 0.5rem 1rem;
+    background-color: #15207C;
+    color: #F2F2F2;
+    border-radius: 0.6rem;
+    border: none;
+    cursor: pointer;
 }
 
-button {
-    font-size: 2rem;
+.locationcard button {
+    font-size: 1.7rem;
+    height: 3rem;
+    padding: 0.5rem 1rem;
+    background-color: #15207C;
+    color: #F2F2F2;
+    border-radius: 0.6rem;
+    border: none;
+    cursor: pointer;
 }

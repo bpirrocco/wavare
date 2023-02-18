@@ -9,16 +9,18 @@
 {% include "home/header.html" %} 
 {% load static %}
 
-<div class="content">
+<div class="content location">
     {% for location in location %}
     <div class="locationcard">
         <h2> {{ location.location }} </h2>
-        <select name="{{ location.location }}" id="{{ location.location }}">
-            <option value="today">Today</option>
-            <option value="hourly">Hourly</option>
-            <option value="daily">Daily</option>
-        </select>
-        <button type="button" id="{{ location.location }}button">Submit</button>
+        <div class="form">
+            <select name="{{ location.location }}" id="{{ location.location }}">
+                <option value="today">Today</option>
+                <option value="hourly">Hourly</option>
+                <option value="daily">Daily</option>
+            </select>
+            <button type="button" id="{{ location.location }}button">Go</button>
+        </div>
     </div>
     {% endfor %}
 </div>
