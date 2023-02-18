@@ -7,6 +7,7 @@
 {% block content %}
 
 {% include "home/header.html" %} 
+{% load static %}
 
 <div class="content">
     <div class="cardleft">
@@ -26,6 +27,8 @@
 
     <h1>{{ params }}</h1>
 </div>
+
+<script src="{% static 'home/script.js' %}"></script>
 
 
 {% include "home/footer.html" %}
