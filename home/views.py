@@ -47,10 +47,8 @@ def forecast(request, location, date, interval):
 
 
 def locations(request):
-    
-    form = ForecastForm()
 
-    return render(request, "home/location.html", {"location": Location.objects.all(), "form": form})
+    return render(request, "home/location.html", {"location": Location.objects.all()})
     
 class QuerystringRedirect(RedirectView):
     

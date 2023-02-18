@@ -1,5 +1,5 @@
-let nazare = document.querySelector('#nazare');
-let nazButton = document.querySelector('#nazbutton');
+let nazare = document.querySelector('#Nazaré');
+let nazButton = document.querySelector('#Nazarébutton');
 
 
 nazButton.addEventListener("click", function() {

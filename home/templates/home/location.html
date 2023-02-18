@@ -10,22 +10,17 @@
 {% load static %}
 
 <div class="content">
-    <div class="cardleft">
-        <h2> {{ location.0 }}</h2>
-        <!-- <label for="forecast">Forecast: </label> -->
-        <select name="nazare" id="nazare">
+    {% for location in location %}
+    <div class="locationcard">
+        <h2> {{ location.location }} </h2>
+        <select name="{{ location.location }}" id="{{ location.location }}">
             <option value="today">Today</option>
             <option value="hourly">Hourly</option>
             <option value="daily">Daily</option>
         </select>
-        <button type="button" id="nazbutton">Submit</button>
-        <!-- <form action="GET">
-            {{ form }}
-            <button type="submit">Submit</button>
-        </form> -->
+        <button type="button" id="{{ location.location }}button">Submit</button>
     </div>
-
-    <h1>{{ params }}</h1>
+    {% endfor %}
 </div>
 
 <script src="{% static 'home/script.js' %}"></script>
