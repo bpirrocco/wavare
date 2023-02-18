@@ -14,9 +14,9 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, register_converter
+from django.urls import path, re_path, register_converter
 
-from home.views import welcome, nazare, forecast, location
+from home.views import welcome, nazare, forecast, locations, QuerystringRedirect
 from home import converters
 
 register_converter(converters.DateConverter, 'date')
@@ -26,6 +26,7 @@ urlpatterns = [
     path('', welcome, name="home"),
     path('nazare', nazare, name="nazare"),
     path('forecast/<int:location>/<date:date>/<str:interval>', forecast, name="forecast"),
-    path('forecast/', location, name="location"),
+    path('forecast/', locations, name="location"),
+    # re_path(r'^forecast/$', QuerystringRedirect.as_view(), name="forecaster"),
     # path('location/<int:id>', location, name="location")
 ]

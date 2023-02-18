@@ -12,10 +12,19 @@
     <div class="cardleft">
         <h2> {{ location.0 }}</h2>
         <!-- <label for="forecast">Forecast: </label> -->
-        <form action="">
+        <select name="nazare" id="nazare">
+            <option value="today">Today</option>
+            <option value="hourly">Hourly</option>
+            <option value="daily">Daily</option>
+        </select>
+        <button type="submit">Submit</button>
+        <!-- <form action="GET">
+            {{ form }}
             <button type="submit">Submit</button>
-        </form>
+        </form> -->
     </div>
+
+    <h1>{{ params }}</h1>
 </div>
 
 

@@ -2,6 +2,9 @@ import json
 import datetime as dt
 
 from django.shortcuts import render, get_object_or_404, redirect
+from django.urls import reverse
+from django.views.generic import RedirectView
+from django.http import Http404
 
 from .models import Location, Forecast
 from .common.util import functions
@@ -43,6 +46,18 @@ def forecast(request, location, date, interval):
     return render(request, "home/forecast.html", {"forecast": forecast, "data": data, "time_list": time_list, "date_list": date_list, "data_list": data_list})
 
 
-def location(request):
-    # form = ForecastForm()
-    return render(request, "home/location.html", {"location": Location.objects.all()})
+def locations(request):
+    
+    form = ForecastForm()
+
+    return render(request, "home/location.html", {"location": Location.objects.all(), "form": form})
+    
+class QuerystringRedirect(RedirectView):
+    
+    permanent = False
+    query_string = False
+    pattern_name = 'forecast'
+
+    def get_redirect_url(self, *args, **kwargs):
+        article = get_object_or_404(Forecast, location=kwargs['location'], date=kwargs['date'], interval=['interval'])
+        return super().get_redirect_url(*args, **kwargs)
