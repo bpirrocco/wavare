@@ -11,7 +11,7 @@
 
 <div class="content location">
     {% for location in location %}
-    <div class="locationcard">
+    <div class="locationcard" id="{{ location.location }}card">
         <h2> {{ location.location }} </h2>
         <div class="form">
             <select name="{{ location.location }}" id="{{ location.location }}">
