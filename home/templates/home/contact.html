@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Wavare - Contact {% endblock %} 
+{% block description %} Contact Info {% endblock %} 
+
+{% block content %}
+
+{% include "home/header.html" %} 
+
+<div class="content">
+    <div class="contactbox">
+        <h3>Contact Brandon</h3>
+        <ul>
+            <li>Cellphone: <em>Available upon request</em></li>
+            <li>Email: <a href="bpirrocco@gmail.com">bpirrocco@gmail.com</a></li>
+            <li>Website: <a href="bpirrocco.dev">bpirrocco.dev</a></li>
+            <li>GitHub: <a href="https://github.com/bpirrocco">Brandon's Github</a></li>
+        </ul>
+    </div>
+</div>
+
+{% include "home/footer.html" %}
+
+{% endblock %}
