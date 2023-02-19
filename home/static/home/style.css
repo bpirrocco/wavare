@@ -424,4 +424,24 @@ li {
 
 li a, em {
   font-size: 1.5rem;
+}
+
+.about {
+  display: flex;
+  flex-direction: row;
+}
+
+.imagesidebar {
+  width: 33vw;
+  display: flex;
+  flex-direction: column;
+}
+
+.aboutcard {
+  width: 77vw;
+}
+
+.nazareabout {
+  width: 337px;
+  height: 253px;
 }/*# sourceMappingURL=style.css.map */
