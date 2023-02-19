@@ -57,7 +57,7 @@ header nav li {
     padding-right: 0rem;
 }
 
-header nav li:first-child {
+header nav li:not(:last-child) {
     padding-right: 1.5rem;
 }
 
@@ -448,6 +448,8 @@ select {
     margin-top: 4rem;
     box-shadow:  4px 4px 3px 2px rgba(black, 0.55);
     background-color: #effafd;
+    border-radius: 0.6rem;
+    padding: 1.5rem;
 }
 
 h3 {
