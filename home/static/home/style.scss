@@ -435,3 +435,36 @@ select {
     border: none;
     cursor: pointer;
 }
+
+// ************
+// Contact Card 
+// ************
+
+.contact {
+    align-items: center;
+}
+
+.contactcard {
+    margin-top: 4rem;
+    box-shadow:  4px 4px 3px 2px rgba(black, 0.55);
+    background-color: #effafd;
+}
+
+h3 {
+    font-size: 2.8rem;
+    padding: 1rem;
+    font-weight: 100;
+}
+
+ul {
+    list-style-type: none;
+}
+
+li {
+    font-size: 1.7rem;
+    padding: 0.6rem 0.6rem 0.6rem 0.6rem;
+}
+
+li a, em {
+    font-size: 1.5rem;
+}
