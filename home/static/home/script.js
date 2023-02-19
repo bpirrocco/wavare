@@ -54,8 +54,9 @@ for (var i = 0; i <= buttonCount; i += 1) {
 
 
 // TODO:
-// For each button in buttons, add an eventlistener that
-// gets the selector next to that button, gets the location id 
-//  from its parent div, and gets the interval from the selector 
-// value. Also maybe make a date variable that holds 2/10/23
-// for now. Will eventually make it the current date
+// Create two slideshows on the about.html page
+// These slideshows should have some kind of smooth transition
+// between images.
+
+// Once you've completed that. Attempt to use JavaScript to
+// create the originally intended effect on the location cards
