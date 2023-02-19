@@ -13,7 +13,7 @@
     {% for location in location %}
     <div class="locationcard" id="{{ location.location }}card">
         <h2> {{ location.location }} </h2>
-        <div class="form">
+        <div class="form" id="{{ location.id }}">
             <select name="{{ location.location }}" id="{{ location.location }}">
                 <option value="today">Today</option>
                 <option value="hourly">Hourly</option>
