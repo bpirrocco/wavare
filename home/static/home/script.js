@@ -7,28 +7,51 @@
 //     window.location.href = `1/2023-02-10/${nazare}`
 // })
 
-// let location, interval;
+// let locationId, interval;
 
-function getInfo(e, location, interval) {
-    let button, selector;
+// locationId = nazButton.parentNode.id;
+
+function getInfo(e) {
+    let button, selector, locationId, interval;
     button = e.target;
     selector = button.previousSibling;
-    location = selector.parentNode.id;
+    locationId = button.parentNode.id;
     interval = selector.value;
-    return location, interval;
+    return locationId, interval;
 }
 
 let buttons = document.getElementsByTagName('button');
 let buttonCount = buttons.length;
+// let data;
+// nazButton.addEventListener("click", function(e) {
+//     data = getInfo(e);
+//     alert(data);
+// })
 // buttons.addEventListener("onclick", function(e) {
 //     getInfo(e, location, interval);
 //     window.location.href - `${location}/2023-02-10/${interval}`
 // })
-for ( )
-buttons.addEventListener("click", function() {
-    let selector, location, interval;
-    selector = buttons.
-})
+for (var i = 0; i <= buttonCount; i += 1) {
+    buttons[i].onclick = function(e) {
+        let locationId, interval;
+        locationId = this.parentNode.id;
+        interval = this.previousElementSibling.value;
+        window.location.href = `${locationId}/2023-02-10/${interval}`;
+    }
+}
+
+// function addListener(button) {
+//     button.addEventListener("click", function() {
+//         let selector, locationId, interval;
+//         selector = button.previousSibling;
+//         locationId = selector.parentNode.id;
+//         interval = selector.value;
+//         window.location.href = `${locationId}/2023-02-10/${interval}`;
+//     })
+// }
+
+// buttons.forEach(addListener)
+
 
 // TODO:
 // For each button in buttons, add an eventlistener that
