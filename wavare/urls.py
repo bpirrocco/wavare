@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, re_path, register_converter
 
-from home.views import welcome, nazare, forecast, locations, QuerystringRedirect, contact
+from home.views import welcome, nazare, forecast, locations, QuerystringRedirect, contact, about
 from home import converters
 
 register_converter(converters.DateConverter, 'date')
@@ -30,4 +30,5 @@ urlpatterns = [
     # re_path(r'^forecast/$', QuerystringRedirect.as_view(), name="forecaster"),
     # path('location/<int:id>', location, name="location")
     path('contact', contact, name="contact"),
+    path('about', about, name="about"),
 ]
