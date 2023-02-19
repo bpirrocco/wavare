@@ -59,3 +59,6 @@ class QuerystringRedirect(RedirectView):
     def get_redirect_url(self, *args, **kwargs):
         article = get_object_or_404(Forecast, location=kwargs['location'], date=kwargs['date'], interval=['interval'])
         return super().get_redirect_url(*args, **kwargs)
+
+def contact(request):
+    return render(request, "home/contact.html")
