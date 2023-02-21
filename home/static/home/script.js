@@ -11,6 +11,16 @@
 
 // locationId = nazButton.parentNode.id;
 if (window.location.pathname == '/forecast/') {
+
+    let card = document.getElementById("Nazarécard");
+    card.addEventListener("mouseover", function(e) {
+        addClass(e, card);
+    })
+    function addClass(e, card) {
+        card.classList.add("locationimg");
+    }
+
+
     function getInfo(e) {
         let button, selector, locationId, interval;
         button = e.target;
@@ -41,10 +51,10 @@ if (window.location.pathname == '/forecast/') {
         }
     }
 
-    let card = document.querySelector("locationcard")
-    card.addEventListener("onmouseover", function() {
-        this.classList.add("locationimg");
-    })
+   
+
+    
+    
 
     // function addBackgroundImage() {
     //     let i;
