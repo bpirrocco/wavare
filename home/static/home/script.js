@@ -31,12 +31,14 @@ let buttonCount = buttons.length;
 //     getInfo(e, location, interval);
 //     window.location.href - `${location}/2023-02-10/${interval}`
 // })
-for (var i = 0; i <= buttonCount; i += 1) {
-    buttons[i].onclick = function(e) {
-        let locationId, interval;
-        locationId = this.parentNode.id;
-        interval = this.previousElementSibling.value;
-        window.location.href = `${locationId}/2023-02-10/${interval}`;
+if (!buttons) {
+    for (var i = 0; i <= buttonCount; i += 1) {
+        buttons[i].onclick = function(e) {
+            let locationId, interval;
+            locationId = this.parentNode.id;
+            interval = this.previousElementSibling.value;
+            window.location.href = `${locationId}/2023-02-10/${interval}`;
+        }
     }
 }
 
@@ -51,6 +53,32 @@ for (var i = 0; i <= buttonCount; i += 1) {
 // }
 
 // buttons.forEach(addListener)
+
+// let slide = document.getElementById('slide1');
+// changeSrc(slide);
+// function changeSrc(slide) {
+//     alert('Hello')
+//     slide.src = "{% static 'home/nazare_lighthouse.jpg' %}";
+//     setTimeout(changeSrc, 2000);
+// }
+// window.onload = function() {
+//     alert("hello")
+// }
+
+let slideIndex = 0;
+showSlides();
+
+function showSlides() {
+  let i;
+  let slides = document.getElementsByClassName("myslide");
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";  
+  }
+  slideIndex++;
+  if (slideIndex > slides.length) {slideIndex = 1} 
+  slides[slideIndex-1].style.display = "block";  
+  setTimeout(showSlides, 3000); // Change image every 2 seconds
+}
 
 
 // TODO:

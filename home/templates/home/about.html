@@ -10,8 +10,20 @@
 
 <div class="about">
     <div class="imagesidebar">
-        <img src="{% static 'home/nazare_from_ocean.jpg' %}" alt="Nazare from the water" class="nazareabout">
-        <img src="{% static 'home/peniche1.jpg' %}" alt="Peniche" class="Peniche">
+        <div class="slidebox">
+            <div class="myslide fade">
+                <img src="{% static 'home/nazare_from_ocean.jpg' %}" alt="Nazare from the water" id="slide1">
+            </div>
+            <div class="myslide fade2">
+                <img src="{% static 'home/peniche1.jpg' %}" alt="Peniche" class="Peniche">
+            </div>
+        </div>
+        <div class="slidebox2">
+            <div class="myslide2">
+                <img src="{% static 'home/peniche1.jpg' %}" alt="Peniche" class="Peniche">
+                <!-- <img src="{% static 'home/nazare_from_ocean.jpg' %}" alt="Nazare from the water" id="slide1"> -->
+            </div>
+        </div>
     </div>
     <div class="aboutcard">
         <h3>About Wavaré</h3>
@@ -27,6 +39,8 @@
         </div>
     </div>
 </div>
+
+<script src="{% static 'home/script.js' %}"></script>
 
 {% include "home/footer.html" %}
 
