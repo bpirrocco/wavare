@@ -40,6 +40,21 @@ if (window.location.pathname == '/forecast/') {
             window.location.href = `${locationId}/2023-02-10/${interval}`;
         }
     }
+
+    let card = document.querySelector("locationcard")
+    card.addEventListener("onmouseover", function() {
+        this.classList.add("locationimg");
+    })
+
+    // function addBackgroundImage() {
+    //     let i;
+    //     let card = document.querySelectorAll("locationcard");
+    //     for (i = 0; i <= card.length; i++) {
+    //         card[i].addEventListener("onmouseover", function() {
+    //             this.classList.add("locationimg");
+    //         })
+    //     }
+    // }
 }
 
 // function addListener(button) {
@@ -107,9 +122,6 @@ if (window.location.pathname == '/about/') {
 
 
 // TODO:
-// Create two slideshows on the about.html page
-// These slideshows should have some kind of smooth transition
-// between images.
 
 // Once you've completed that. Attempt to use JavaScript to
 // create the originally intended effect on the location cards
