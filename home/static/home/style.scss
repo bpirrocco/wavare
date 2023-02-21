@@ -508,10 +508,15 @@ li a, em {
     max-height: 50%;
 }
 
+.invisible {
+    opacity: 0;
+}
+
 .fade {
     animation-name: fade;
     animation-duration: 8s;
     animation-timing-function: ease-in-out;
+    animation-fill-mode: backwards;
 }
 
 .fade2 {
@@ -519,6 +524,7 @@ li a, em {
     animation-duration: 8s;
     animation-timing-function: ease-in-out;
     animation-direction: reverse;
+    animation-fill-mode: forwards;
 }
 
 .fade3 {

@@ -459,6 +459,10 @@ li a, em {
   max-height: 50%;
 }
 
+.invisible {
+  opacity: 0;
+}
+
 .fade {
   -webkit-animation-name: fade;
           animation-name: fade;
@@ -466,6 +470,8 @@ li a, em {
           animation-duration: 8s;
   -webkit-animation-timing-function: ease-in-out;
           animation-timing-function: ease-in-out;
+  -webkit-animation-fill-mode: backwards;
+          animation-fill-mode: backwards;
 }
 
 .fade2 {
@@ -476,6 +482,8 @@ li a, em {
   -webkit-animation-timing-function: ease-in-out;
           animation-timing-function: ease-in-out;
   animation-direction: reverse;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
 }
 
 .fade3 {
