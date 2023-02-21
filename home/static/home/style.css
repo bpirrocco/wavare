@@ -462,8 +462,8 @@ li a, em {
 .fade {
   -webkit-animation-name: fade;
           animation-name: fade;
-  -webkit-animation-duration: 4s;
-          animation-duration: 4s;
+  -webkit-animation-duration: 8s;
+          animation-duration: 8s;
   -webkit-animation-timing-function: ease-in-out;
           animation-timing-function: ease-in-out;
 }
@@ -471,11 +471,34 @@ li a, em {
 .fade2 {
   -webkit-animation-name: fade;
           animation-name: fade;
-  -webkit-animation-duration: 4s;
-          animation-duration: 4s;
+  -webkit-animation-duration: 8s;
+          animation-duration: 8s;
   -webkit-animation-timing-function: ease-in-out;
           animation-timing-function: ease-in-out;
   animation-direction: reverse;
+}
+
+.fade3 {
+  -webkit-animation-name: fade2;
+          animation-name: fade2;
+  -webkit-animation-duration: 8s;
+          animation-duration: 8s;
+  -webkit-animation-timing-function: ease-in-out;
+          animation-timing-function: ease-in-out;
+  -webkit-animation-fill-mode: backwards;
+          animation-fill-mode: backwards;
+}
+
+.fade4 {
+  -webkit-animation-name: fade2;
+          animation-name: fade2;
+  -webkit-animation-duration: 8s;
+          animation-duration: 8s;
+  -webkit-animation-timing-function: ease-in-out;
+          animation-timing-function: ease-in-out;
+  animation-direction: reverse;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
 }
 
 @-webkit-keyframes fade {
@@ -503,10 +526,36 @@ li a, em {
     transform: translateX(-200%);
   }
 }
-.myslide {
+@-webkit-keyframes fade2 {
+  0% {
+    transform: translateX(125%);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes fade2 {
+  0% {
+    transform: translateX(125%);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.myslide,
+.myslide2 {
   width: 100%;
   height: 100%;
   box-shadow: 4px 4px 3px 2px rgba(0, 0, 0, 0.55);
+  z-index: 1;
 }
 
 .aboutcard {
@@ -516,6 +565,8 @@ li a, em {
   box-shadow: 4px 4px 3px 2px rgba(0, 0, 0, 0.55);
   display: flex;
   flex-direction: column;
+  z-index: 2;
+  background-color: #effafd;
 }
 
 .aboutcard h3 {
