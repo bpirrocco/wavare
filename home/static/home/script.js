@@ -10,28 +10,28 @@
 // let locationId, interval;
 
 // locationId = nazButton.parentNode.id;
+if (window.location.pathname == '/forecast/') {
+    function getInfo(e) {
+        let button, selector, locationId, interval;
+        button = e.target;
+        selector = button.previousSibling;
+        locationId = button.parentNode.id;
+        interval = selector.value;
+        return locationId, interval;
+    }
 
-function getInfo(e) {
-    let button, selector, locationId, interval;
-    button = e.target;
-    selector = button.previousSibling;
-    locationId = button.parentNode.id;
-    interval = selector.value;
-    return locationId, interval;
-}
+    let buttons = document.getElementsByTagName('button');
+    let buttonCount = buttons.length;
+    // let data;
+    // nazButton.addEventListener("click", function(e) {
+    //     data = getInfo(e);
+    //     alert(data);
+    // })
+    // buttons.addEventListener("onclick", function(e) {
+    //     getInfo(e, location, interval);
+    //     window.location.href - `${location}/2023-02-10/${interval}`
+    // })
 
-let buttons = document.getElementsByTagName('button');
-let buttonCount = buttons.length;
-// let data;
-// nazButton.addEventListener("click", function(e) {
-//     data = getInfo(e);
-//     alert(data);
-// })
-// buttons.addEventListener("onclick", function(e) {
-//     getInfo(e, location, interval);
-//     window.location.href - `${location}/2023-02-10/${interval}`
-// })
-if (!buttons) {
     for (var i = 0; i <= buttonCount; i += 1) {
         buttons[i].onclick = function(e) {
             let locationId, interval;
@@ -64,45 +64,45 @@ if (!buttons) {
 // window.onload = function() {
 //     alert("hello")
 // }
-
-let slideIndex1 = 0;
-let slideIndex2 = 0;
-let slides2 = document.getElementsByClassName("myslide2");
-let j;
-for (j = 1; j <slides2.length; j++) {
-    slides2[j].style.display = "none";
-}
-showSlides();
-window.onload = function() {
-    setTimeout(showSlides2, 4000);
-}
-
-function showSlides() {
-  let i;
-  let slides = document.getElementsByClassName("myslide");
-  for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";  
-  }
-  slideIndex1++;
-  if (slideIndex1 > slides.length) {slideIndex1 = 1} 
-  slides[slideIndex1-1].style.display = "block";  
-  setTimeout(showSlides, 8000); // Change image every 2 seconds
-}
-
-function showSlides2() {
-    let i;
-    let slides = document.getElementsByClassName("myslide2");
-    slides[0].classList.replace("invisible", "fade3");
-    // slides[0].classList.add("fade3");
-    for (i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none";  
+if (window.location.pathname == '/about/') {
+    let slideIndex1 = 0;
+    let slideIndex2 = 0;
+    let slides2 = document.getElementsByClassName("myslide2");
+    let j;
+    for (j = 1; j <slides2.length; j++) {
+        slides2[j].style.display = "none";
     }
-    slideIndex2++;
-    if (slideIndex2 > slides.length) {slideIndex2 = 1} 
-    slides[slideIndex2-1].style.display = "block";  
-    setTimeout(showSlides2, 8000); // Change image every 2 seconds
-}
+    showSlides();
+    window.onload = function() {
+        setTimeout(showSlides2, 4000);
+    }
 
+    function showSlides() {
+    let i;
+    let slides = document.getElementsByClassName("myslide");
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";  
+    }
+    slideIndex1++;
+    if (slideIndex1 > slides.length) {slideIndex1 = 1} 
+    slides[slideIndex1-1].style.display = "block";  
+    setTimeout(showSlides, 8000); // Change image every 2 seconds
+    }
+
+    function showSlides2() {
+        let i;
+        let slides = document.getElementsByClassName("myslide2");
+        slides[0].classList.replace("invisible", "fade3");
+        // slides[0].classList.add("fade3");
+        for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";  
+        }
+        slideIndex2++;
+        if (slideIndex2 > slides.length) {slideIndex2 = 1} 
+        slides[slideIndex2-1].style.display = "block";  
+        setTimeout(showSlides2, 8000); // Change image every 2 seconds
+    }
+}
 
 
 
