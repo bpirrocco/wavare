@@ -353,8 +353,30 @@ footer {
 
 .locationimg {
   background-image: url("nazare2.jpg");
+  background-repeat: no-repeat;
 }
 
+.locationoff {
+  background-position-x: 300%;
+}
+
+@-webkit-keyframes backgroundmove {
+  from {
+    background-position-x: -300%;
+  }
+  to {
+    background-position-x: 0;
+  }
+}
+
+@keyframes backgroundmove {
+  from {
+    background-position-x: -300%;
+  }
+  to {
+    background-position-x: 0;
+  }
+}
 .locationcard:hover {
   background-color: #e2edf0;
 }

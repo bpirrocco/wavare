@@ -16,8 +16,15 @@ if (window.location.pathname == '/forecast/') {
     card.addEventListener("mouseover", function(e) {
         addClass(e, card);
     })
+    card.addEventListener("mouseleave", function(e) {
+        removeClass(e, card);
+    })
     function addClass(e, card) {
         card.classList.add("locationimg");
+    }
+    function removeClass(e, card) {
+        card.classList.remove("locationimg")
+        // card.classList.replace("locationimg", "locationoff");
     }
 
 

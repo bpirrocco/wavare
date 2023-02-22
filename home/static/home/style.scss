@@ -384,10 +384,27 @@ footer {
     border-radius: 0.6rem;
     box-shadow: 4px 4px 3px 2px rgba(black, 0.55);
     transition: 1.5s;
+    // background-position-x: -300%;
 }
 
 .locationimg {
-    background-image: url("nazare2.jpg")
+    background-image: url("nazare2.jpg");
+    background-repeat: no-repeat;
+    // background-position-x: 0%;
+    // animation: backgroundmove 5s ease-in-out backwards;
+}
+
+.locationoff {
+    background-position-x: 300%;
+}
+
+@keyframes backgroundmove {
+    from {
+        background-position-x: -300%;
+    }
+    to {
+        background-position-x: 0;
+    }
 }
 
 .locationcard:hover {
