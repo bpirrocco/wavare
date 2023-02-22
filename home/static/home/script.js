@@ -96,7 +96,7 @@ if (window.location.pathname == '/forecast/') {
 // window.onload = function() {
 //     alert("hello")
 // }
-if (window.location.pathname == '/about/') {
+// if (window.location.pathname == '/about/') {
     let slideIndex1 = 0;
     let slideIndex2 = 0;
     let slides2 = document.getElementsByClassName("myslide2");
@@ -134,7 +134,7 @@ if (window.location.pathname == '/about/') {
         slides[slideIndex2-1].style.display = "block";  
         setTimeout(showSlides2, 8000); // Change image every 2 seconds
     }
-}
+// }
 
 
 
