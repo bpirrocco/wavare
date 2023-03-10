@@ -20,6 +20,8 @@ from ...common.util import fg_shared, fg_daily, fg_hourly
 
 logger = logging.getLogger(__name__)
 
+locations = Location.objects.values_list("location")
+
 def save_new_forecast(locations):
     """Saves new forecasts to the database
 
@@ -36,8 +38,17 @@ def save_new_forecast(locations):
     """
 
     for location in locations:
-        if not Forecast.objects.filter(location_id = location):
+        if not Forecast.objects.filter(location_id = location).exists:
             forecast = Forecast(
-                date = dt.date.today().strftime("%Y.%m.%d")
+                date = dt.date.today().strftime("%Y.%m.%d"),
+                location_id = location,
+                interval = interval,
+                filename = filename
             )
+            forecast.save()
+
+def create_forecasts():
+    for location in locations:
+        fg_daily.generate_daily_forecast(location, 10)
+        fg_hourly.generate_hourly_forecast(location, 24)
 
