@@ -13,8 +13,9 @@ from apscheduler.triggers.cron import CronTrigger
 from django_apscheduler.jobstores import DjangoJobStore
 from django_apscheduler.models import DjangoJobExecution
 
-# Models
+# Models & Functions
 from home.models import Location, Forecast
+from ...common.util import fg_shared, fg_daily, fg_hourly
 
 
 logger = logging.getLogger(__name__)
@@ -40,18 +41,3 @@ def save_new_forecast(locations):
                 date = dt.date.today().strftime("%Y.%m.%d")
             )
 
-    # podcast_title = feed.channel.title
-    # podcast_image = feed.channel.image["href"]
-
-    # for item in feed.entries:
-    #     if not Episode.objects.filter(guid=item.guid).exists():
-    #         episode = Episode(
-    #             title=item.title,
-    #             description=item.description,
-    #             pub_date=parser.parse(item.published),
-    #             link=item.link,
-    #             image=podcast_image,
-    #             podcast_name=podcast_title,
-    #             guid=item.guid,
-    #         )
-    #         episode.save()
