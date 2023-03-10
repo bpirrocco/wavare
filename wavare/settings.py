@@ -42,6 +42,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'home',
+    # Third Party Apps
+    "django_apscheduler",
+
 ]
 
 MIDDLEWARE = [
