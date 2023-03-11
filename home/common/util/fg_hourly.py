@@ -3,7 +3,7 @@ from datetime import datetime
 
 from unidecode import unidecode
 
-from fg_shared import generate_json, generate_height_list
+from .fg_shared import generate_json, generate_height_list
 
 
 def generate_time_list(length):

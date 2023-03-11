@@ -22,7 +22,7 @@ logger = logging.getLogger(__name__)
 
 locations = Location.objects.values_list("location")
 
-def save_new_forecasts(locations):
+def save_new_forecasts():
     """Saves new forecasts to the database
 
 
@@ -37,7 +37,7 @@ def save_new_forecasts(locations):
 
     """
 
-    date = dt.date.today().strftime("%Y.%m.%d"),
+    date = dt.date.today().strftime("%Y-%m-%d")
 
     for location in locations:
         if not Forecast.objects.filter(date = date).exists:
