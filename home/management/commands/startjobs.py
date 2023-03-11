@@ -79,9 +79,9 @@ def create_daily_forecast(location):
     """
 
     interval = "daily"
-    filepath = fg_daily.generate_daily_forecast(location, 10)
+    file = fg_daily.generate_daily_forecast(location, 10)
 
-    return [interval, filepath]
+    return [interval, file]
 
 def create_hourly_forecast(location):
     """Create hourly forecasts for each location.
@@ -97,13 +97,13 @@ def create_hourly_forecast(location):
     """
 
     interval = "hourly"
-    filepath = fg_hourly.generate_hourly_forecast(location, 24)
+    file = fg_hourly.generate_hourly_forecast(location, 24)
 
-    return [interval, filepath]
+    return [interval, file]
 
 def test_json_generator():
     hourly_data = create_hourly_forecast("Nazaré")
-    hourly_filename = hourly_data[1].file.open('r')
+    hourly_filename = hourly_data[1]
     print(type(hourly_filename))
 
 def delete_old_job_executions(max_age=604_800):
