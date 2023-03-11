@@ -14,13 +14,13 @@ from django_apscheduler.jobstores import DjangoJobStore
 from django_apscheduler.models import DjangoJobExecution
 
 # Models & Functions
-from home.models import Location, Forecast
+from home.models import Location, Forecast, ForecastTest
 from ...common.util import fg_shared, fg_daily, fg_hourly
 
 
 logger = logging.getLogger(__name__)
 
-locations = Location.objects.values_list("location", flat=True)
+
 
 def save_new_forecasts():
     """Saves new forecasts to the database
@@ -36,21 +36,21 @@ def save_new_forecasts():
         location: takes a list of all Locations
 
     """
-
+    locations = Location.objects.values_list("location", flat=True)
     date = dt.date.today().strftime("%Y-%m-%d")
 
     for location in locations:
-        if not Forecast.objects.filter(date = date).exists:
+        if not ForecastTest.objects.filter(date = date).exists:
             daily_data = create_daily_forecast(location)
             hourly_data = create_hourly_forecast(location)
-            daily_forecast = Forecast(
+            daily_forecast = ForecastTest(
                 location = location,
                 date = date,
                 interval = daily_data[0],
                 filename = daily_data[1]
             )
             daily_forecast.save()
-            hourly_forecast = Forecast(
+            hourly_forecast = ForecastTest(
                 location = location,
                 date = date,
                 interval = hourly_data[0],
