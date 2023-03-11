@@ -20,7 +20,7 @@ from ...common.util import fg_shared, fg_daily, fg_hourly
 
 logger = logging.getLogger(__name__)
 
-locations = Location.objects.values_list("location")
+locations = Location.objects.values_list("location", flat=True)
 
 def save_new_forecasts():
     """Saves new forecasts to the database
@@ -44,7 +44,7 @@ def save_new_forecasts():
             daily_data = create_daily_forecast(location)
             hourly_data = create_hourly_forecast(location)
             daily_forecast = Forecast(
-                location_id = location,
+                location = location,
                 date = date,
                 interval = daily_data[0],
                 filename = daily_data[1]
