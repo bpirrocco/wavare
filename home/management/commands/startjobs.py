@@ -37,18 +37,61 @@ def save_new_forecast(locations):
 
     """
 
+    date = dt.date.today().strftime("%Y.%m.%d"),
+
     for location in locations:
-        if not Forecast.objects.filter(location_id = location).exists:
-            forecast = Forecast(
-                date = dt.date.today().strftime("%Y.%m.%d"),
+        if not Forecast.objects.filter(date = date).exists:
+            daily_data = create_daily_forecast(location)
+            hourly_data = create_hourly_forecast(location)
+            daily_forecast = Forecast(
                 location_id = location,
-                interval = interval,
-                filename = filename
+                date = date,
+                interval = daily_data[0],
+                filename = daily_data[1]
             )
-            forecast.save()
+            daily_forecast.save()
+            hourly_forecast = Forecast(
+                location_id = location,
+                date = date,
+                interval = hourly_data[0],
+                filename = hourly_data[1]
+            )
+            hourly_forecast.save()
 
-def create_forecasts():
-    for location in locations:
-        fg_daily.generate_daily_forecast(location, 10)
-        fg_hourly.generate_hourly_forecast(location, 24)
+def create_daily_forecast(location):
+    """Create daily forecasts for each location.
+    
+    Args: 
+    
+        Location: a string of a location contained in the db
+        
+    Returns:
+    
+        A list containing the info needed to create a Forecast model
+    
+    """
 
+    interval = "daily"
+    filename = fg_daily.generate_daily_forecast(location, 10)
+
+    return [interval, filename]
+
+def create_hourly_forecast(location):
+    """Create hourly forecasts for each location.
+    
+    Args:
+    
+        Location: a string of a location contained in the db
+        
+    Returns:
+    
+        A list containing the info needed to create a Forecast model
+        
+    """
+
+    location_id = location
+    date = dt.date.today().strftime("%Y.%m.%d")
+    interval = "hourly"
+    filename = fg_hourly.generate_hourly_forecast(location, 24)
+
+    return [location_id, date, interval, filename]

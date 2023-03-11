@@ -8,7 +8,7 @@ from unidecode import unidecode
 
 # from daily import generate_daily_forecast
 
-PATH = 'assets/'
+PATH = 'wavare/home/media/forecasts/'
 
 def generate_height(range_start, range_end):
     return float(random.randrange(range_start, range_end))/10
@@ -40,3 +40,4 @@ def generate_json(location, interval, data):
     df = pandas.DataFrame(data=data)
     filename = generate_filename(location, interval)
     df.to_json(f'{PATH}/{filename}', orient='records')
+    return filename
