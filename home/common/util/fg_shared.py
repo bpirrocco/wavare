@@ -13,7 +13,7 @@ from django.conf import settings
 
 BASE_DIR = settings.BASE_DIR
 MEDIA_ROOT = settings.MEDIA_ROOT
-PATH = os.path.join(MEDIA_ROOT, 'test/')
+PATH = os.path.join(MEDIA_ROOT, 'bullpen/')
 
 def generate_height(range_start, range_end):
     return float(random.randrange(range_start, range_end))/10

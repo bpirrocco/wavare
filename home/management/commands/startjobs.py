@@ -44,11 +44,13 @@ def save_new_forecasts():
         if not Forecast.objects.filter(date = date).exists:
             daily_data = create_daily_forecast(location)
             hourly_data = create_hourly_forecast(location)
+            daily_filename = daily_data[1].file.open('r')
+            hourly_filename = hourly_data[1].file.open('r')
             daily_forecast = Forecast(
                 location = location,
                 date = date,
                 interval = daily_data[0],
-                filename = daily_data[1]
+                filename = daily_filename
                 # interval = 'daily',
                 # filename = 'wavare/home/media/test/nazare_daily_3.11.23'
             )
@@ -57,7 +59,7 @@ def save_new_forecasts():
                 location = location,
                 date = date,
                 interval = hourly_data[0],
-                filename = hourly_data[1]
+                filename = hourly_filename
                 # interval = 'hourly',
                 # filename = 'wavare/home/media/test/nazare_hourly_3.11.23'
             )
@@ -113,25 +115,25 @@ class Command(BaseCommand):
         scheduler = BlockingScheduler(timezone=settings.TIME_ZONE)
         scheduler.add_jobstore(DjangoJobStore(), "default")
 
-        # scheduler.add_job(
-        #     save_new_forecasts,
-        #     trigger="interval",
-        #     seconds=30,
-        #     id="Forecasts",
-        #     max_instances=1,
-        #     replace_existing=True,
-        # )
-        # logger.info("Added job: Save New Forecasts")
-
         scheduler.add_job(
-            test_json_generator,
+            save_new_forecasts,
             trigger="interval",
             seconds=30,
-            id="TEST",
+            id="Forecasts",
             max_instances=1,
             replace_existing=True,
         )
-        logger.info("Added job: TEST")
+        logger.info("Added job: Save New Forecasts")
+
+        # scheduler.add_job(
+        #     test_json_generator,
+        #     trigger="interval",
+        #     seconds=30,
+        #     id="TEST",
+        #     max_instances=1,
+        #     replace_existing=True,
+        # )
+        # logger.info("Added job: TEST")
 
         scheduler.add_job(
             delete_old_job_executions,
