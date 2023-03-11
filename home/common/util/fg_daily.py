@@ -31,5 +31,5 @@ def generate_daily_forecast(location, length):
 
     # That worked :)
 
-    filename = generate_json(location, 'daily', data)
-    return filename
+    filepath = generate_json(location, 'daily', data)
+    return filepath

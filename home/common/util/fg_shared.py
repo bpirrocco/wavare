@@ -1,14 +1,19 @@
 import datetime as dt
 from datetime import datetime
 import random
+import os
 
 import pandas
 
 from unidecode import unidecode
 
+from django.conf import settings
+
 # from daily import generate_daily_forecast
 
-PATH = 'wavare/home/media/test/'
+BASE_DIR = settings.BASE_DIR
+MEDIA_ROOT = settings.MEDIA_ROOT
+PATH = os.path.join(MEDIA_ROOT, 'bullpen/')
 
 def generate_height(range_start, range_end):
     return float(random.randrange(range_start, range_end))/10
@@ -39,5 +44,6 @@ def generate_filename(location, interval):
 def generate_json(location, interval, data):
     df = pandas.DataFrame(data=data)
     filename = generate_filename(location, interval)
-    df.to_json(f'{PATH}/{filename}', orient='records')
-    return filename
+    filepath = os.path.join(PATH, filename)
+    df.to_json(filepath, orient='records')
+    return filepath

@@ -34,5 +34,5 @@ def generate_hourly_forecast(location, length):
 
     # That worked :)
 
-    filename = generate_json(location, 'hourly', data)
-    return filename
+    filepath = generate_json(location, 'hourly', data)
+    return filepath

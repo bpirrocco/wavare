@@ -17,6 +17,7 @@ from pathlib import Path
 load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+# Hey Brandon, the BASE_DIR is the directory containing manage.py.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 

@@ -19,7 +19,8 @@ from ...common.util import fg_shared, fg_daily, fg_hourly
 
 
 logger = logging.getLogger(__name__)
-
+BASE_DIR = settings.BASE_DIR
+MEDIA_ROOT = settings.MEDIA_ROOT
 
 
 def save_new_forecasts():
@@ -40,21 +41,25 @@ def save_new_forecasts():
     date = dt.date.today().strftime("%Y-%m-%d")
 
     for location in locations:
-        if not ForecastTest.objects.filter(date = date).exists:
+        if not Forecast.objects.filter(date = date).exists:
             daily_data = create_daily_forecast(location)
             hourly_data = create_hourly_forecast(location)
-            daily_forecast = ForecastTest(
+            daily_forecast = Forecast(
                 location = location,
                 date = date,
                 interval = daily_data[0],
                 filename = daily_data[1]
+                # interval = 'daily',
+                # filename = 'wavare/home/media/test/nazare_daily_3.11.23'
             )
             daily_forecast.save()
-            hourly_forecast = ForecastTest(
+            hourly_forecast = Forecast(
                 location = location,
                 date = date,
                 interval = hourly_data[0],
                 filename = hourly_data[1]
+                # interval = 'hourly',
+                # filename = 'wavare/home/media/test/nazare_hourly_3.11.23'
             )
             hourly_forecast.save()
 
@@ -72,9 +77,9 @@ def create_daily_forecast(location):
     """
 
     interval = "daily"
-    filename = fg_daily.generate_daily_forecast(location, 10)
+    filepath = fg_daily.generate_daily_forecast(location, 10)
 
-    return [interval, filename]
+    return [interval, filepath]
 
 def create_hourly_forecast(location):
     """Create hourly forecasts for each location.
@@ -89,12 +94,10 @@ def create_hourly_forecast(location):
         
     """
 
-    location_id = location
-    date = dt.date.today().strftime("%Y.%m.%d")
     interval = "hourly"
-    filename = fg_hourly.generate_hourly_forecast(location, 24)
+    filepath = fg_hourly.generate_hourly_forecast(location, 24)
 
-    return [location_id, date, interval, filename]
+    return [interval, filepath]
 
 def delete_old_job_executions(max_age=604_800):
     """Deletes all apscheduler job execution logs older than `max_age`."""
