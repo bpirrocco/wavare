@@ -51,7 +51,7 @@ def save_new_forecasts():
             )
             daily_forecast.save()
             hourly_forecast = Forecast(
-                location_id = location,
+                location = location,
                 date = date,
                 interval = hourly_data[0],
                 filename = hourly_data[1]
@@ -110,7 +110,7 @@ class Command(BaseCommand):
         scheduler.add_job(
             save_new_forecasts,
             trigger="interval",
-            minutes=2,
+            seconds=30,
             id="Forecasts",
             max_instances=1,
             replace_existing=True,
