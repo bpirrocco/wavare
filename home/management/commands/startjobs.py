@@ -99,6 +99,9 @@ def create_hourly_forecast(location):
 
     return [interval, filepath]
 
+def test_json_generator():
+    fg_hourly.generate_hourly_forecast("Nazaré", 24)
+
 def delete_old_job_executions(max_age=604_800):
     """Deletes all apscheduler job execution logs older than `max_age`."""
     DjangoJobExecution.objects.delete_old_job_executions(max_age)
@@ -110,15 +113,25 @@ class Command(BaseCommand):
         scheduler = BlockingScheduler(timezone=settings.TIME_ZONE)
         scheduler.add_jobstore(DjangoJobStore(), "default")
 
+        # scheduler.add_job(
+        #     save_new_forecasts,
+        #     trigger="interval",
+        #     seconds=30,
+        #     id="Forecasts",
+        #     max_instances=1,
+        #     replace_existing=True,
+        # )
+        # logger.info("Added job: Save New Forecasts")
+
         scheduler.add_job(
-            save_new_forecasts,
+            test_json_generator,
             trigger="interval",
             seconds=30,
-            id="Forecasts",
+            id="TEST",
             max_instances=1,
             replace_existing=True,
         )
-        logger.info("Added job: Save New Forecasts")
+        logger.info("Added job: TEST")
 
         scheduler.add_job(
             delete_old_job_executions,
