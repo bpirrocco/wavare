@@ -8,7 +8,7 @@ from unidecode import unidecode
 
 # from daily import generate_daily_forecast
 
-PATH = 'wavare/home/media/forecasts/'
+PATH = 'wavare/home/media/test/'
 
 def generate_height(range_start, range_end):
     return float(random.randrange(range_start, range_end))/10

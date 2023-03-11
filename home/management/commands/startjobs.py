@@ -111,7 +111,7 @@ class Command(BaseCommand):
             save_new_forecasts,
             trigger="interval",
             minutes=2,
-            id="Talkin' Baseball Podcast",
+            id="Forecasts",
             max_instances=1,
             replace_existing=True,
         )

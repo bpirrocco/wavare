@@ -20,7 +20,7 @@ class Forecast(models.Model):
     location =  models.ForeignKey(Location, on_delete = models.CASCADE)
     date = models.DateField()
     interval = models.CharField(max_length = 6, choices = INTERVAL_CHOICES, default = 'today')
-    filename = models.FileField(upload_to = 'forecasts/')
+    filename = models.FileField(upload_to = 'test/')
 
     def __str__(self):
         return f"Forecast for max wave height - {self.interval} in {self.location} on {self.date}"
