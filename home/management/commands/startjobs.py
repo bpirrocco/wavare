@@ -115,7 +115,7 @@ def test_json_generator():
     date = dt.date.today().strftime("%Y-%m-%d")
 
     filename = "nazare_2023.03.12_hourly.json"
-    filepath = os.path.join(PATH, filename)
+    filepath = os.path.join("test/", filename)
 
 
     locations = Location.objects.all()
