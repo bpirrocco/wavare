@@ -46,8 +46,8 @@ def save_new_forecasts():
     for location in locations:
         # if not Forecast.objects.filter(date = date).exists:
         location_str = location.location
-        daily_data = create_daily_forecast(location)
-        hourly_data = create_hourly_forecast(location)
+        daily_data = create_daily_forecast(location_str)
+        hourly_data = create_hourly_forecast(location_str)
         daily_forecast = Forecast(
             location = location,
             date = date,
