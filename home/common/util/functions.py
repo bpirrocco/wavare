@@ -33,10 +33,9 @@ def get_forecast_data(data, interval):
 
     if interval == "hourly":
         datetime_list = data.loc[:, "date"]
-        date = datetime.strptime(datetime_list[0], format_data)
+        date = datetime_list[0]
         today = date.strftime("%A, %B %-d")
-        for datetime in datetime_list:
-            new_date = datetime.strptime(datetime, format_data)
-            time_list.append(new_date.strftime("%-I%p"))
+        for date in datetime_list:
+            time_list.append(date.strftime("%-I%p"))
         data_list = data.loc[:, "max_wave_height"]
         return today, time_list, data_list
