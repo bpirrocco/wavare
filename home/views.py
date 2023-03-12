@@ -34,14 +34,16 @@ def nazare(request):
     return render(request, "home/nazare.html")
 
 def forecast(request, location, date, interval):
-    forecast = get_object_or_404(Forecast, location = location, date = date, interval = interval)
+    forecast = get_object_or_404(Forecast, location = location, date = date, interval = "hourly")
     forecast_file = forecast.filename
     pre_data = forecast_file.file.open('r')
-    data = json.load(pre_data)
-    time_list = []
-    date_list = []
-    functions.get_forecast_datetime(data, time_list, date_list)
-    data_list = list(enumerate(data))
+    # data = json.load(pre_data)
+    # time_list = []
+    # date_list = []
+    df = pd.read_json(pre_data)
+    today, time_list, data_list = functions.get_forecast_data(df, interval)
+    # functions.get_forecast_datetime(data, time_list, date_list)
+    # data_list = list(enumerate(data))
     hourly = (interval == "hourly")
     daily = (interval == "daily")
     today = (interval == "today")
