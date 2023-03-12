@@ -17,22 +17,9 @@
         <img src="{% static 'home/wave-icon3.webp' %}" alt="Wave Icon" class="mainicon">
     </div>
     <div class="scrollable">
-        <div class="cardbox">
-            {% for idx, dict in data_list %}
-                <div class="card">
-                    <a href="#0">
-                        <h2>{{ dict.max_wave_height }}m</h2>
-                    </a>
-                    <p>
-                        <!-- {% for time in time_list %} {{ time }} {% endfor %}  -->
-                        {{ time_list|index:idx }}
-                        <br> 
-                        <!-- {% for date in date_list %} {{ date }}{% endfor %} -->
-                        {{ date_list|index:idx }}
-                    </p>
-                </div>
-            {% endfor %}               
-        </div>
+        
+        {% include "home/hourly_forecast.html" %}
+
     </div><!-- scrollable -->
 </div><!-- content detail -->
 
