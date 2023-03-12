@@ -38,28 +38,20 @@ def save_new_forecasts():
 
     save new forecasts to the database
 
-
-    Args:
-
-        location: takes a list of all Locations
-
     """
-    locations = Location.objects.values_list("location", flat=True)
+
+    locations = Location.objects.all()
     date = dt.date.today().strftime("%Y-%m-%d")
 
     for location in locations:
         if not Forecast.objects.filter(date = date).exists:
             daily_data = create_daily_forecast(location)
             hourly_data = create_hourly_forecast(location)
-            # daily_filename = daily_data[1].file.open('r')
-            # hourly_filename = hourly_data[1].file.open('r')
             daily_forecast = Forecast(
                 location = location,
                 date = date,
                 interval = daily_data[0],
                 filename = daily_data[1]
-                # interval = 'daily',
-                # filename = 'wavare/home/media/test/nazare_daily_3.11.23'
             )
             daily_forecast.save()
             hourly_forecast = Forecast(
@@ -67,8 +59,6 @@ def save_new_forecasts():
                 date = date,
                 interval = hourly_data[0],
                 filename = hourly_data[1]
-                # interval = 'hourly',
-                # filename = 'wavare/home/media/test/nazare_hourly_3.11.23'
             )
             hourly_forecast.save()
 
@@ -86,9 +76,9 @@ def create_daily_forecast(location):
     """
 
     interval = "daily"
-    file = fg_daily.generate_daily_forecast(location, 10)
+    filepath = fg_daily.generate_daily_forecast(location, 10)
 
-    return [interval, file]
+    return [interval, filepath]
 
 def create_hourly_forecast(location):
     """Create hourly forecasts for each location.
@@ -104,32 +94,32 @@ def create_hourly_forecast(location):
     """
 
     interval = "hourly"
-    file = fg_hourly.generate_hourly_forecast(location, 24)
+    filepath = fg_hourly.generate_hourly_forecast(location, 24)
 
-    return [interval, file]
+    return [interval, filepath]
 
-def test_json_generator():
-    # hourly_data = create_hourly_forecast("Nazaré")
-    # hourly_filename = hourly_data[1]
-    # print(type(hourly_filename))
-    date = dt.date.today().strftime("%Y-%m-%d")
+# def test_json_generator():
+#     # hourly_data = create_hourly_forecast("Nazaré")
+#     # hourly_filename = hourly_data[1]
+#     # print(type(hourly_filename))
+#     date = dt.date.today().strftime("%Y-%m-%d")
 
-    filename = "nazare_2023.03.12_hourly.json"
-    filepath = os.path.join("test/", filename)
+#     filename = "nazare_2023.03.12_hourly.json"
+#     filepath = os.path.join("test/", filename)
 
 
-    locations = Location.objects.all()
-    nazare = locations[0]
+#     locations = Location.objects.all()
+#     nazare = locations[0]
 
-    hourly_forecast = Forecast(
-                location = nazare,
-                date = date,
-                interval = "hourly",
-                filename = filepath
-                # interval = 'hourly',
-                # filename = 'wavare/home/media/test/nazare_hourly_3.11.23'
-            )
-    hourly_forecast.save()
+#     hourly_forecast = Forecast(
+#                 location = nazare,
+#                 date = date,
+#                 interval = "hourly",
+#                 filename = filepath
+#                 # interval = 'hourly',
+#                 # filename = 'wavare/home/media/test/nazare_hourly_3.11.23'
+#             )
+#     hourly_forecast.save()
 
 
 def delete_old_job_executions(max_age=604_800):
@@ -143,25 +133,25 @@ class Command(BaseCommand):
         scheduler = BlockingScheduler(timezone=settings.TIME_ZONE)
         scheduler.add_jobstore(DjangoJobStore(), "default")
 
-        # scheduler.add_job(
-        #     save_new_forecasts,
-        #     trigger="interval",
-        #     seconds=30,
-        #     id="Forecasts",
-        #     max_instances=1,
-        #     replace_existing=True,
-        # )
-        # logger.info("Added job: Save New Forecasts")
-
         scheduler.add_job(
-            test_json_generator,
+            save_new_forecasts,
             trigger="interval",
             seconds=30,
-            id="TEST",
+            id="Forecasts",
             max_instances=1,
             replace_existing=True,
         )
-        logger.info("Added job: TEST")
+        logger.info("Added job: Save New Forecasts")
+
+        # scheduler.add_job(
+        #     test_json_generator,
+        #     trigger="interval",
+        #     seconds=30,
+        #     id="TEST",
+        #     max_instances=1,
+        #     replace_existing=True,
+        # )
+        # logger.info("Added job: TEST")
 
         scheduler.add_job(
             delete_old_job_executions,
