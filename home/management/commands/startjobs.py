@@ -44,23 +44,23 @@ def save_new_forecasts():
     date = dt.date.today().strftime("%Y-%m-%d")
 
     for location in locations:
-        if not Forecast.objects.filter(date = date).exists:
-            daily_data = create_daily_forecast(location)
-            hourly_data = create_hourly_forecast(location)
-            daily_forecast = Forecast(
-                location = location,
-                date = date,
-                interval = daily_data[0],
-                filename = daily_data[1]
-            )
-            daily_forecast.save()
-            hourly_forecast = Forecast(
-                location = location,
-                date = date,
-                interval = hourly_data[0],
-                filename = hourly_data[1]
-            )
-            hourly_forecast.save()
+        # if not Forecast.objects.filter(date = date).exists:
+        daily_data = create_daily_forecast(location)
+        hourly_data = create_hourly_forecast(location)
+        daily_forecast = Forecast(
+            location = location,
+            date = date,
+            interval = daily_data[0],
+            filename = daily_data[1]
+        )
+        daily_forecast.save()
+        hourly_forecast = Forecast(
+            location = location,
+            date = date,
+            interval = hourly_data[0],
+            filename = hourly_data[1]
+        )
+        hourly_forecast.save()
 
 def create_daily_forecast(location):
     """Create daily forecasts for each location.
