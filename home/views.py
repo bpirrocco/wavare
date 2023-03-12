@@ -32,8 +32,8 @@ def nazare(request):
     # return render(request, "home/nazare.html", {"wave_height": wave_height})
     return render(request, "home/nazare.html")
 
-def forecast(request, location, date, interval):
-    forecast = get_object_or_404(Forecast, location = location, date = date, interval = interval)
+def forecast(request, location, date):
+    forecast = get_object_or_404(Forecast, location = location, date = date, interval = "hourly")
     forecast_file = forecast.filename
     # with open('media/test/' + forecast_file, "r") as read_file:
     #     data = json.load(read_file)

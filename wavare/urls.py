@@ -25,10 +25,15 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', welcome, name="home"),
     path('nazare', nazare, name="nazare"),
-    path('forecast/<int:location>/<date:date>/<str:interval>', forecast, name="forecast"),
+    # path('forecast/<int:location>/<date:date>/<str:interval>', forecast, name="forecast"),
+    path('forecast/<int:location>/<date:date>/hourly', forecast, name="hourly_forecast"),
     path('forecast/', locations, name="location"),
     # re_path(r'^forecast/$', QuerystringRedirect.as_view(), name="forecaster"),
     # path('location/<int:id>', location, name="location")
     path('contact', contact, name="contact"),
     path('about', about, name="about"),
 ]
+
+
+# I need to make views for daily and today handling the data from the hourly forecast
+# to generate the data for the daily and today forecasts
