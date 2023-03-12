@@ -47,3 +47,7 @@ def get_forecast_data(data, interval):
             pre_data = dict(zip(key, value))
             data_list.append(pre_data)
         return today, time_list, data_list
+
+# This function is too complex for no reason. 
+# Let's get back to using the get_forecast_datetime function and build off the logic and structures
+# I was using there. This should simplify this funciton. No need to turn anything into a pandas dataframe
