@@ -49,12 +49,19 @@ if (window.location.pathname == '/forecast/') {
     //     window.location.href - `${location}/2023-02-10/${interval}`
     // })
 
+    const today = new Date();
+    const result = today.toISOString().split('T')[0]
+    // let year = today.getFullYear();
+    // let month = today.getMonth() + 1;
+    // let day = today.getDate();
+    // today = `${year}-${month}-${day}`
+
     for (var i = 0; i <= buttonCount; i += 1) {
         buttons[i].onclick = function(e) {
             let locationId, interval;
             locationId = this.parentNode.id;
             interval = this.previousElementSibling.value;
-            window.location.href = `${locationId}/2023-02-10/${interval}`;
+            window.location.href = `${locationId}/${result}/${interval}`;
         }
     }
 
