@@ -1,6 +1,7 @@
 import logging
 import datetime as dt
 from datetime import datetime
+import os
 
 # Django
 from django.conf import settings
@@ -21,6 +22,7 @@ from ...common.util import fg_shared, fg_daily, fg_hourly
 logger = logging.getLogger(__name__)
 BASE_DIR = settings.BASE_DIR
 MEDIA_ROOT = settings.MEDIA_ROOT
+PATH = os.path.join(MEDIA_ROOT, 'bullpen/')
 
 
 # Check out last test function. This returned a file-like object and created the json file in the bullpen
@@ -106,10 +108,24 @@ def create_hourly_forecast(location):
 
     return [interval, file]
 
-# def test_json_generator():
-#     hourly_data = create_hourly_forecast("Nazaré")
-#     hourly_filename = hourly_data[1]
-#     print(type(hourly_filename))
+def test_json_generator():
+    # hourly_data = create_hourly_forecast("Nazaré")
+    # hourly_filename = hourly_data[1]
+    # print(type(hourly_filename))
+    date = dt.date.today().strftime("%Y-%m-%d")
+    filename = "nazare_2023.03.12_hourly.json"
+    filepath = os.path.join(PATH, filename)
+    file = open(filepath, 'r')
+    hourly_forecast = Forecast(
+                location = "Nazaré",
+                date = date,
+                interval = "hourly",
+                filename = file
+                # interval = 'hourly',
+                # filename = 'wavare/home/media/test/nazare_hourly_3.11.23'
+            )
+    hourly_forecast.save()
+
 
 def delete_old_job_executions(max_age=604_800):
     """Deletes all apscheduler job execution logs older than `max_age`."""
@@ -122,25 +138,25 @@ class Command(BaseCommand):
         scheduler = BlockingScheduler(timezone=settings.TIME_ZONE)
         scheduler.add_jobstore(DjangoJobStore(), "default")
 
-        scheduler.add_job(
-            save_new_forecasts,
-            trigger="interval",
-            seconds=30,
-            id="Forecasts",
-            max_instances=1,
-            replace_existing=True,
-        )
-        logger.info("Added job: Save New Forecasts")
-
         # scheduler.add_job(
-        #     test_json_generator,
+        #     save_new_forecasts,
         #     trigger="interval",
         #     seconds=30,
-        #     id="TEST",
+        #     id="Forecasts",
         #     max_instances=1,
         #     replace_existing=True,
         # )
-        # logger.info("Added job: TEST")
+        # logger.info("Added job: Save New Forecasts")
+
+        scheduler.add_job(
+            test_json_generator,
+            trigger="interval",
+            seconds=30,
+            id="TEST",
+            max_instances=1,
+            replace_existing=True,
+        )
+        logger.info("Added job: TEST")
 
         scheduler.add_job(
             delete_old_job_executions,
