@@ -37,6 +37,13 @@ def get_forecast_data(data, interval):
         today = date.strftime("%A, %B %-d")
         for date in datetime_list:
             time_list.append(date.strftime("%-I%p"))
-        data_list = data.loc[:, "max_wave_height"]
-        
+        pre_data_list = list(df['max_wave_height'])
+        key = ["max_wave_height"]
+        value = [""]
+        data_list = []
+        for item in pre_data_list:
+            i = pre_data_list.index(item)
+            value[0] = pre_data_list[i]
+            pre_data = dict(zip(key, value))
+            data_list.append(pre_data)
         return today, time_list, data_list
