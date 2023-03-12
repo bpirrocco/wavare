@@ -38,4 +38,5 @@ def get_forecast_data(data, interval):
         for date in datetime_list:
             time_list.append(date.strftime("%-I%p"))
         data_list = data.loc[:, "max_wave_height"]
+        
         return today, time_list, data_list
