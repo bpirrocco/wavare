@@ -46,5 +46,4 @@ def generate_json(location, interval, data):
     filename = generate_filename(location, interval)
     filepath = os.path.join(PATH, filename)
     df.to_json(filepath, orient='records')
-    file = open(filepath, 'r')
-    return file
+    return filepath

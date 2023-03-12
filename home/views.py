@@ -14,7 +14,8 @@ from .forms import ForecastForm
 
 
 def welcome(request):
-    urldate = dt.datetime(2023, 2, 10)
+    # urldate = dt.datetime(2023, 2, 10)
+    urldate = dt.date.today()
     return render(request, "home/home.html", {"urldate": urldate})
 
 def nazare(request):
