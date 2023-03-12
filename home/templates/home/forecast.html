@@ -18,7 +18,11 @@
     </div>
     <div class="scrollable">
         
+        {% if hourly %}
+
         {% include "home/hourly_forecast.html" %}
+
+        {% endif %}
 
     </div><!-- scrollable -->
 </div><!-- content detail -->

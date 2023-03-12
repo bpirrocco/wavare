@@ -33,8 +33,8 @@ def nazare(request):
     # return render(request, "home/nazare.html", {"wave_height": wave_height})
     return render(request, "home/nazare.html")
 
-def hourly_forecast(request, location, date):
-    forecast = get_object_or_404(Forecast, location = location, date = date, interval = "hourly")
+def forecast(request, location, date, interval):
+    forecast = get_object_or_404(Forecast, location = location, date = date, interval = interval)
     forecast_file = forecast.filename
     pre_data = forecast_file.file.open('r')
     data = json.load(pre_data)
@@ -42,7 +42,10 @@ def hourly_forecast(request, location, date):
     date_list = []
     functions.get_forecast_datetime(data, time_list, date_list)
     data_list = list(enumerate(data))
-    return render(request, "home/forecast.html", {"forecast": forecast, "data": data, "time_list": time_list, "date_list": date_list, "data_list": data_list})
+    hourly = (interval == "hourly")
+    daily = (interval == "daily")
+    today = (interval == "today")
+    return render(request, "home/forecast.html", {"forecast": forecast, "data": data, "time_list": time_list, "date_list": date_list, "data_list": data_list, "hourly": hourly, "daily": daily, "today": today})
 
 def daily_forecast(request, location, date):
     forecast = get_object_or_404(Forecast, location = location, date = date, interval = "daily")
