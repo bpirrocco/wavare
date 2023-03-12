@@ -113,14 +113,19 @@ def test_json_generator():
     # hourly_filename = hourly_data[1]
     # print(type(hourly_filename))
     date = dt.date.today().strftime("%Y-%m-%d")
+
     filename = "nazare_2023.03.12_hourly.json"
     filepath = os.path.join(PATH, filename)
-    file = open(filepath, 'r')
+
+
+    locations = Location.objects.all()
+    nazare = locations[0]
+
     hourly_forecast = Forecast(
-                location = "Nazaré",
+                location = nazare,
                 date = date,
                 interval = "hourly",
-                filename = file
+                filename = filepath
                 # interval = 'hourly',
                 # filename = 'wavare/home/media/test/nazare_hourly_3.11.23'
             )
