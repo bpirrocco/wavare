@@ -40,19 +40,19 @@ def get_hourly_datalist(data):
     for dict in data:
         data_list.append(dict['max_wave_height'])
     # if interval == "today":
-    #     for x in range(7):
-    #         morning += data_list[x]
-    #     for x in range(5):
-    #         afternoon += data_list[x+7]
-    #     for x in range(5):
-    #         evening += data_list[x+12]
-    #     for x in range(7):
-    #         night += data_list[x+17]
-    #     morning = morning / 7
-    #     afternoon = afternoon / 5
-    #     evening = evening / 5
-    #     night = night / 7
-    #     return morning, afternoon, evening, night
+        # for x in range(7):
+        #     morning += data_list[x]
+        # for x in range(5):
+        #     afternoon += data_list[x+7]
+        # for x in range(5):
+        #     evening += data_list[x+12]
+        # for x in range(7):
+        #     night += data_list[x+17]
+        # morning = morning / 7
+        # afternoon = afternoon / 5
+        # evening = evening / 5
+        # night = night / 7
+        # return morning, afternoon, evening, night
     # elif interval == "daily":
     #     total = 0
     #     for el in range(0, len(data_list)):
@@ -72,6 +72,21 @@ def get_daily_datalist(data_list):
     range_end = range_start + 25
     height_list = height_list + [generate_height(range_start, range_end) for x in range(9)]
     return height_list
+
+def get_today_datalist(data_list):
+    for x in range(7):
+        morning += data_list[x]
+    for x in range(5):
+        afternoon += data_list[x+7]
+    for x in range(5):
+        evening += data_list[x+12]
+    for x in range(7):
+        night += data_list[x+17]
+    morning = morning / 7
+    afternoon = afternoon / 5
+    evening = evening / 5
+    night = night / 7
+    return morning, afternoon, evening, night
 
 def get_forecast_data(data, interval):
     
