@@ -39,6 +39,7 @@ def forecast(request, location, date, interval):
     pre_data = forecast_file.file.open('r')
     data = json.load(pre_data)
     date_list = []
+    time_list = []
 
     if interval == "hourly":
         time_list, data_list, today = functions.get_forecast_data(data, interval)
@@ -48,7 +49,7 @@ def forecast(request, location, date, interval):
         data_list, today = functions.get_forecast_data(data, interval)
     
     data_list = list(enumerate(data_list))
-    
+
     hourly = (interval == "hourly")
     daily = (interval == "daily")
     today_bool = (interval == "today")

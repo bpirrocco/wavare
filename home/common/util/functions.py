@@ -48,9 +48,9 @@ def get_daily_datalist(data_list):
     total = total / (len(data_list))
 
     height_list = [total,]
-    range_start = total - 12
-    range_end = range_start + 25
-    height_list = height_list + [generate_height(range_start, range_end) for x in range(9)]
+    range_start = total - 1.2
+    range_end = range_start + 2.5
+    height_list = height_list + [generate_height(int(range_start), int(range_end)) for x in range(9)]
     return height_list
 
 def get_today_datalist(data_list):
