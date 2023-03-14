@@ -4,7 +4,7 @@ import random
 
 from .fg_shared import generate_height
 
-# format_data = "%Y-%m-%dT%H:%M:%S.%fZ"
+format_data = "%Y-%m-%dT%H:%M:%SZ"
 # time_list = []
 # def get_forecast_datetime(data, time_list, date_list):
 #     format_data = "%Y-%m-%dT%H:%M:%SZ"
@@ -15,25 +15,21 @@ from .fg_shared import generate_height
 
 def get_forecast_time_list(data):
     time_list = []
-    # date_list = []
-    format_data = "%Y-%m-%dT%H:%M:%SZ"
     for dict in data:
         new_date = datetime.strptime(dict['date'], format_data)
         time_list.append(new_date.strftime("%-I%p"))
-        # date_list.append(new_date.strftime("%B, %-d"))
     return time_list
 
 def get_forecast_date(date):
-    format_data = "%Y-%m-%dT%H:%M:%SZ"
     date = datetime.strptime(date, format_data)
     today = date.strftime("%A, %B %-d")
     return today
 
 def get_daily_list(date):
-    format_data = "%Y-%m-%dT%H:%M:%SZ"
     date = datetime.strptime(date, format_data)
     day = timedelta(days=1)
     date_list = [date,]
+
     for el in range(0, 9):
         new_date = date_list[el] + day
         date_list.append(new_date)
@@ -50,6 +46,7 @@ def get_daily_datalist(data_list):
     for el in range(0, len(data_list)):
         total = total + data_list[el]
     total = total / (len(data_list))
+
     height_list = [total,]
     range_start = total - 12
     range_end = range_start + 25
@@ -65,6 +62,7 @@ def get_today_datalist(data_list):
         evening += data_list[x+12]
     for x in range(7):
         night += data_list[x+17]
+
     morning = morning / 7
     afternoon = afternoon / 5
     evening = evening / 5
@@ -76,6 +74,7 @@ def get_forecast_data(data, interval):
     date = time_list[0]
     today = get_forecast_date(date)
     data_list = get_hourly_datalist(data)
+
     if interval == "today":
         morning, afternoon, evening, night = get_today_datalist(data_list)
         return morning, afternoon, evening, night
