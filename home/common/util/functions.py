@@ -60,6 +60,11 @@ def get_daily_datalist(data_list):
     return height_list
 
 def get_today_datalist(data_list):
+    morning = 0
+    afternoon = 0
+    evening = 0
+    night = 0
+    
     for x in range(7):
         morning += data_list[x]
     for x in range(5):

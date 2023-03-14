@@ -40,6 +40,7 @@ def forecast(request, location, date, interval):
     data = json.load(pre_data)
     date_list = []
     time_list = []
+    time_of_day = ['Morning', 'Afternoon', 'Evening', 'Night']
 
     if interval == "hourly":
         time_list, data_list, today = functions.get_forecast_data(data, interval)
@@ -54,7 +55,7 @@ def forecast(request, location, date, interval):
     daily = (interval == "daily")
     today_bool = (interval == "today")
 
-    return render(request, "home/forecast.html", {"forecast": forecast, "time_list": time_list, "date_list": date_list, "data_list": data_list, "hourly": hourly, "daily": daily, "today": today_bool, "date": today})
+    return render(request, "home/forecast.html", {"forecast": forecast, "time_list": time_list, "date_list": date_list, "data_list": data_list, "hourly": hourly, "daily": daily, "today": today_bool, "date": today, "time_of_day": time_of_day})
 
 def daily_forecast(request, location, date):
     forecast = get_object_or_404(Forecast, location = location, date = date, interval = "daily")
