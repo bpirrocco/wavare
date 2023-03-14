@@ -1,5 +1,5 @@
 import json
-from datetime import datetime
+from datetime import datetime, timedelta
 
 # format_data = "%Y-%m-%dT%H:%M:%S.%fZ"
 # time_list = []
@@ -10,14 +10,27 @@ from datetime import datetime
 #         time_list.append(new_date.strftime("%-I%p"))
 #         date_list.append(new_date.strftime("%B, %-d"))
 
-def get_forecast_datetime(data):
+def get_forecast_time_list(data):
     time_list = []
-    date_list = []
+    # date_list = []
     format_data = "%Y-%m-%dT%H:%M:%SZ"
     for dict in data:
         new_date = datetime.strptime(dict['date'], format_data)
         time_list.append(new_date.strftime("%-I%p"))
-        date_list.append(new_date.strftime("%B, %-d"))
+        # date_list.append(new_date.strftime("%B, %-d"))
+    return time_list
+
+def get_forecast_date(date):
+    today = date.strftime("%A, %B %-d")
+    return today
+
+def get_daily_list(date):
+    day = timedelta(days=1)
+    date_list = [date,]
+    for el in range(0, 9):
+        new_date = date_list[el] + day
+        date_list.append(new_date)
+    return date_list
 
 def get_forecast_datalist(data, interval):
     data_list = []
