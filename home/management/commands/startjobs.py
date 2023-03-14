@@ -23,10 +23,9 @@ MEDIA_ROOT = settings.MEDIA_ROOT
 PATH = os.path.join(MEDIA_ROOT, 'bullpen/')
 
 
-# Check out last test function. This returned a file-like object and created the json file in the bullpen
-# For some reason the save_new_forecasts still isn't running. 
-# Try running another test to just create an entry for a hard-coded location
-# Maybe this will shed some light on the issue
+# I want to define a cleanup job that clears entries from 48 hours ago.
+# I want to figure out how to schedule save_new_forecasts to run once a day at midnight
+# I need to get rid of the daily forecast generator
 
 def save_new_forecasts():
     """Saves new forecasts to the database
