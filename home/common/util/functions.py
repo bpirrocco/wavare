@@ -64,7 +64,7 @@ def get_today_datalist(data_list):
     afternoon = 0
     evening = 0
     night = 0
-    
+
     for x in range(7):
         morning += data_list[x]
     for x in range(5):
@@ -74,10 +74,10 @@ def get_today_datalist(data_list):
     for x in range(7):
         night += data_list[x+17]
 
-    morning = morning / 7
-    afternoon = afternoon / 5
-    evening = evening / 5
-    night = night / 7
+    morning = round((morning / 7), 1)
+    afternoon = round((afternoon / 5), 1)
+    evening = round((evening / 5), 1)
+    night = round((night / 7), 1)
     return morning, afternoon, evening, night
 
 def get_forecast_data(data, interval):
