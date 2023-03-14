@@ -1,0 +1,16 @@
+{% load index %}
+
+<div class="cardbox">
+    {% for idx, data in data_list %}
+        <div class="card">
+            <a href="#0">
+                <h2>{{ data }}m</h2>
+            </a>
+            <p>
+                <!-- {% for time in time_list %} {{ time }} {% endfor %}  -->
+                {{ date_list|index:idx }}
+                <br> 
+            </p>
+        </div>
+    {% endfor %}               
+</div>

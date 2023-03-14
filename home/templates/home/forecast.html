@@ -30,7 +30,12 @@
 
         {% endif %}
 
-        
+        {% if today %}
+
+        {% include "home/today_forecast.html" %}
+
+        {% endif %}
+
     </div><!-- scrollable -->
 </div><!-- content detail -->
 
