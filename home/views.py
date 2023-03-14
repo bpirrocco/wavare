@@ -33,6 +33,11 @@ def nazare(request):
     # return render(request, "home/nazare.html", {"wave_height": wave_height})
     return render(request, "home/nazare.html")
 
+    # There is currently much too much going on in this view. I can definitely break this down into
+    # three separate views. One for each type of forecast. This would allow me to break up the
+    # get_forecast_data function into three functions, reducing the complicated nature of that
+    # function
+
 def forecast(request, location, date, interval):
     forecast = get_object_or_404(Forecast, location = location, date = date, interval = "hourly")
     forecast_file = forecast.filename
