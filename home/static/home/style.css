@@ -160,7 +160,7 @@ p {
 }
 
 .h1box {
-  margin-top: 5rem;
+  margin-top: 2rem;
 }
 
 .mainicon {
@@ -171,6 +171,7 @@ p {
 .imgboxmed {
   /* max-height: 20rem; */
   margin-top: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 /* Button Element */
@@ -273,6 +274,9 @@ p {
   transition: 0.2s;
   min-width: 10rem;
   min-height: 8.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 .card a {
@@ -287,8 +291,6 @@ p {
 
 .card h2 {
   font-size: 3rem;
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
 }
 
 .card p {

@@ -16,6 +16,11 @@
     <div class="imgboxmed">
         <img src="{% static 'home/wave-icon3.webp' %}" alt="Wave Icon" class="mainicon">
     </div>
+    {% if daily is False %}
+        <div class="h3box">
+            <h3>{{ date }}</h3>
+        </div>
+    {% endif %}
     <div class="scrollable">
         
         {% if hourly %}
