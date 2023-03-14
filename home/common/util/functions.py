@@ -71,13 +71,14 @@ def get_today_datalist(data_list):
 
 def get_forecast_data(data, interval):
     time_list = get_forecast_time_list(data)
-    date = time_list[0]
+    date = data[0]['date']
     today = get_forecast_date(date)
     data_list = get_hourly_datalist(data)
 
     if interval == "today":
         morning, afternoon, evening, night = get_today_datalist(data_list)
-        return morning, afternoon, evening, night
+        data_list = [morning, afternoon, evening, night]
+        return data_list, today
     elif interval == "daily":
         date_list = get_daily_list(date)
         data_list = get_daily_datalist(data_list)
@@ -86,43 +87,43 @@ def get_forecast_data(data, interval):
         return time_list, data_list, today
 
 
-def get_forecast_data1(data, interval):
-    """Function used to get the correct data for desired interval.
+# def get_forecast_data1(data, interval):
+#     """Function used to get the correct data for desired interval.
     
-    Args:
+#     Args:
         
-        data: pandas dataframe of hourly forecast json
+#         data: pandas dataframe of hourly forecast json
         
-        interval: interval provided in querystring
+#         interval: interval provided in querystring
 
-    Returns:
+#     Returns:
 
-        today: today's date formatted to be easily readable
+#         today: today's date formatted to be easily readable
 
-        time_list: list of times for forecasts
+#         time_list: list of times for forecasts
 
-        data_list: list of data for forecasts
+#         data_list: list of data for forecasts
     
-    """
-    format_data = "%Y-%m-%dT%H:%M:%SZ"
-    time_list = []
+#     """
+#     format_data = "%Y-%m-%dT%H:%M:%SZ"
+#     time_list = []
 
-    if interval == "hourly":
-        datetime_list = data.loc[:, "date"]
-        date = datetime_list[0]
-        today = date.strftime("%A, %B %-d")
-        for date in datetime_list:
-            time_list.append(date.strftime("%-I%p"))
-        pre_data_list = list(df['max_wave_height'])
-        key = ["max_wave_height"]
-        value = [""]
-        data_list = []
-        for item in pre_data_list:
-            i = pre_data_list.index(item)
-            value[0] = pre_data_list[i]
-            pre_data = dict(zip(key, value))
-            data_list.append(pre_data)
-        return today, time_list, data_list
+#     if interval == "hourly":
+#         datetime_list = data.loc[:, "date"]
+#         date = datetime_list[0]
+#         today = date.strftime("%A, %B %-d")
+#         for date in datetime_list:
+#             time_list.append(date.strftime("%-I%p"))
+#         pre_data_list = list(df['max_wave_height'])
+#         key = ["max_wave_height"]
+#         value = [""]
+#         data_list = []
+#         for item in pre_data_list:
+#             i = pre_data_list.index(item)
+#             value[0] = pre_data_list[i]
+#             pre_data = dict(zip(key, value))
+#             data_list.append(pre_data)
+#         return today, time_list, data_list
 
 # This function is too complex for no reason. 
 # Let's get back to using the get_forecast_datetime function and build off the logic and structures

@@ -38,16 +38,21 @@ def forecast(request, location, date, interval):
     forecast_file = forecast.filename
     pre_data = forecast_file.file.open('r')
     data = json.load(pre_data)
-    # time_list = []
-    # date_list = []
-    # df = pd.read_json(forecast_file)
-    # day, time_list, data_list = functions.get_forecast_data(df, interval)
-    # functions.get_forecast_datetime(data, time_list, date_list)
-    data_list = list(enumerate(data))
+    date_list = []
+
+    if interval == "hourly":
+        time_list, data_list, today = functions.get_forecast_data(data, interval)
+    elif interval == "daily":
+        date_list, data_list, today = functions.get_forecast_data(data, interval)
+    else:
+        data_list, today = functions.get_forecast_data(data, interval)
+    
+    data_list = list(enumerate(data_list))
     hourly = (interval == "hourly")
     daily = (interval == "daily")
-    today = (interval == "today")
-    return render(request, "home/forecast.html", {"forecast": forecast, "time_list": time_list, "data_list": data_list, "hourly": hourly, "daily": daily, "today": today, "date": day})
+    today_bool = (interval == "today")
+
+    return render(request, "home/forecast.html", {"forecast": forecast, "time_list": time_list, "date_list": date_list, "data_list": data_list, "hourly": hourly, "daily": daily, "today": today_bool, "date": today})
 
 def daily_forecast(request, location, date):
     forecast = get_object_or_404(Forecast, location = location, date = date, interval = "daily")
