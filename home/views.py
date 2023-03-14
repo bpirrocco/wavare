@@ -19,20 +19,6 @@ def welcome(request):
     urldate = dt.date.today()
     return render(request, "home/home.html", {"urldate": urldate})
 
-def nazare(request):
-    # USERNAME = 'personaluse_pirrocco'
-    # PASSWORD = '07hY0reaKI'
-    # coords = [(39.6033193, -9.0912258)]
-    # startdate = dt.datetime.utcnow().replace(hour=1, minute=0, second=0, microsecond=0)
-    # enddate = startdate + dt.timedelta(days=1)
-    # interval = dt.timedelta(hours=1)
-    # parameters = ['max_individual_wave_height:m']
-
-    # wave_height = api.query_time_series(coords, startdate, enddate, interval, parameters, USERNAME, PASSWORD)
-
-    # return render(request, "home/nazare.html", {"wave_height": wave_height})
-    return render(request, "home/nazare.html")
-
     # There is currently much too much going on in this view. I can definitely break this down into
     # three separate views. One for each type of forecast. This would allow me to break up the
     # get_forecast_data function into three functions, reducing the complicated nature of that
