@@ -1,6 +1,5 @@
 import logging
 import datetime as dt
-from datetime import datetime
 import os
 
 # Django
@@ -8,15 +7,14 @@ from django.conf import settings
 from django.core.management.base import BaseCommand
 
 # Third Party
-from dateutil import parser
 from apscheduler.schedulers.blocking import BlockingScheduler
 from apscheduler.triggers.cron import CronTrigger
 from django_apscheduler.jobstores import DjangoJobStore
 from django_apscheduler.models import DjangoJobExecution
 
 # Models & Functions
-from home.models import Location, Forecast, ForecastTest
-from ...common.util import fg_shared, fg_daily, fg_hourly
+from home.models import Location, Forecast
+from ...common.util import fg_daily, fg_hourly
 
 
 logger = logging.getLogger(__name__)
