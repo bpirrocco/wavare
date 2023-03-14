@@ -1,5 +1,8 @@
 import json
 from datetime import datetime, timedelta
+import random
+
+from .fg_shared import generate_height
 
 # format_data = "%Y-%m-%dT%H:%M:%S.%fZ"
 # time_list = []
@@ -32,7 +35,7 @@ def get_daily_list(date):
         date_list.append(new_date)
     return date_list
 
-def get_forecast_datalist(data, interval):
+def get_hourly_datalist(data):
     data_list = []
     for dict in data:
         data_list.append(dict['max_wave_height'])
@@ -59,8 +62,19 @@ def get_forecast_datalist(data, interval):
     # else:
     return data_list
 
+def get_daily_datalist(data_list):
+    total = 0
+    for el in range(0, len(data_list)):
+        total = total + data_list[el]
+    total = total / (len(data_list))
+    height_list = [total,]
+    range_start = total - 12
+    range_end = range_start + 25
+    height_list = height_list + [generate_height(range_start, range_end) for x in range(9)]
+    return height_list
+
 def get_forecast_data(data, interval):
-    time_list, date_list = get_forecast_datetime(data)
+    
 
 
     
