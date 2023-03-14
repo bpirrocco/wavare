@@ -24,10 +24,14 @@ def get_forecast_time_list(data):
     return time_list
 
 def get_forecast_date(date):
+    format_data = "%Y-%m-%dT%H:%M:%SZ"
+    date = datetime.strptime(date, format_data)
     today = date.strftime("%A, %B %-d")
     return today
 
 def get_daily_list(date):
+    format_data = "%Y-%m-%dT%H:%M:%SZ"
+    date = datetime.strptime(date, format_data)
     day = timedelta(days=1)
     date_list = [date,]
     for el in range(0, 9):
@@ -39,27 +43,6 @@ def get_hourly_datalist(data):
     data_list = []
     for dict in data:
         data_list.append(dict['max_wave_height'])
-    # if interval == "today":
-        # for x in range(7):
-        #     morning += data_list[x]
-        # for x in range(5):
-        #     afternoon += data_list[x+7]
-        # for x in range(5):
-        #     evening += data_list[x+12]
-        # for x in range(7):
-        #     night += data_list[x+17]
-        # morning = morning / 7
-        # afternoon = afternoon / 5
-        # evening = evening / 5
-        # night = night / 7
-        # return morning, afternoon, evening, night
-    # elif interval == "daily":
-    #     total = 0
-    #     for el in range(0, len(data_list)):
-    #         total = total + data_list[el]
-    #     total = total / (len(data_list))
-    #     return total
-    # else:
     return data_list
 
 def get_daily_datalist(data_list):
@@ -89,12 +72,19 @@ def get_today_datalist(data_list):
     return morning, afternoon, evening, night
 
 def get_forecast_data(data, interval):
-    
-
-
-    
-
-
+    time_list = get_forecast_time_list(data)
+    date = time_list[0]
+    today = get_forecast_date(date)
+    data_list = get_hourly_datalist(data)
+    if interval == "today":
+        morning, afternoon, evening, night = get_today_datalist(data_list)
+        return morning, afternoon, evening, night
+    elif interval == "daily":
+        date_list = get_daily_list(date)
+        data_list = get_daily_datalist(data_list)
+        return date_list, data_list, today
+    else:
+        return time_list, data_list, today
 
 
 def get_forecast_data1(data, interval):
