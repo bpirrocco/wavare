@@ -6,11 +6,12 @@
             <a href="#0">
                 <h2>{{ data }}m</h2>
             </a>
-            <p>
-                <!-- {% for time in time_list %} {{ time }} {% endfor %}  -->
-                {{ date_list|index:idx }}
-                <br> 
-            </p>
+            <div class="daily">
+                <p>
+                    {{ date_list|index:idx }}
+                    <br>
+                </p>
+            </div>
         </div>
     {% endfor %}               
 </div>

@@ -31,14 +31,15 @@ def get_daily_list(date):
     date = datetime.date(date)
     day = timedelta(days=1)
     date_list = [date,]
+    final = []
 
     for el in range(0, 9):
         new_date = date_list[el] + day
         date_list.append(new_date)
 
     for el in date_list:
-        el.strftime("%A, %B %-d")
-    return date_list
+        final.append(el.strftime("%a, %B %-d"))
+    return final
 
 def get_hourly_datalist(data):
     data_list = []
