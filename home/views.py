@@ -48,6 +48,7 @@ def forecast(request, location, date, interval):
         data_list, today = functions.get_forecast_data(data, interval)
     
     data_list = list(enumerate(data_list))
+    
     hourly = (interval == "hourly")
     daily = (interval == "daily")
     today_bool = (interval == "today")
