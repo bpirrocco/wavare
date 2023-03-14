@@ -22,17 +22,22 @@ def get_forecast_time_list(data):
 
 def get_forecast_date(date):
     date = datetime.strptime(date, format_data)
+    date = datetime.date(date)
     today = date.strftime("%A, %B %-d")
     return today
 
 def get_daily_list(date):
     date = datetime.strptime(date, format_data)
+    date = datetime.date(date)
     day = timedelta(days=1)
     date_list = [date,]
 
     for el in range(0, 9):
         new_date = date_list[el] + day
         date_list.append(new_date)
+
+    for el in date_list:
+        el.strftime("%A, %B %-d")
     return date_list
 
 def get_hourly_datalist(data):
