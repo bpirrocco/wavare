@@ -124,6 +124,12 @@ def delete_old_job_executions(max_age=604_800):
     """Deletes all apscheduler job execution logs older than `max_age`."""
     DjangoJobExecution.objects.delete_old_job_executions(max_age)
 
+
+# Finish this later, my head hurts
+def delete_old_forecasts(max_age=172_800)
+    """Deletes all forecasts older than two days."""
+
+
 class Command(BaseCommand):
     help = "Runs apscheduler."
 
