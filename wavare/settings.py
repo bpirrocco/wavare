@@ -45,6 +45,9 @@ INSTALLED_APPS = [
     'home',
     # Third Party Apps
     "django_apscheduler",
+    "pandas",
+    "unidecode",
+    "django_cleanup.apps.CleanupConfig"
 
 ]
 
