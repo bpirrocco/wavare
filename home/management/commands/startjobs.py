@@ -183,6 +183,7 @@ class Command(BaseCommand):
             max_instances = 1,
             replace_existing = True,
         )
+        logger.info("Added weekly job: Delete Old Forecast Entries.")
 
         try:
             logger.info("Starting scheduler...")
