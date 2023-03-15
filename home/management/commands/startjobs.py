@@ -132,7 +132,7 @@ def delete_old_forecasts():
     max_age = date - age
     delete_qs = Forecast.objects.filter(date__lte=max_age)
     delete_qs.delete()
-    
+
 
 class Command(BaseCommand):
     help = "Runs apscheduler."
@@ -173,6 +173,16 @@ class Command(BaseCommand):
             replace_existing=True,
         )
         logger.info("Added weekly job: Delete Old Job Executions.")
+
+        scheduler.add_job(
+            delete_old_forecasts,
+            trigger = CronTrigger(
+                hour = "00", minute = "00"
+            ),
+            id = "Delete Old Forecast Entries",
+            max_instances = 1,
+            replace_existing = True,
+        )
 
         try:
             logger.info("Starting scheduler...")
