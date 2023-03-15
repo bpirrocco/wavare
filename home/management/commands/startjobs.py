@@ -41,17 +41,8 @@ def save_new_forecasts():
     date = dt.date.today().strftime("%Y-%m-%d")
 
     for location in locations:
-        # if not Forecast.objects.filter(date = date).exists:
         location_str = location.location
-        # daily_data = create_daily_forecast(location_str)
         hourly_data = create_hourly_forecast(location_str)
-        # daily_forecast = Forecast(
-        #     location = location,
-        #     date = date,
-        #     interval = daily_data[0],
-        #     filename = daily_data[1]
-        # )
-        # daily_forecast.save()
         hourly_forecast = Forecast(
             location = location,
             date = date,
@@ -59,24 +50,6 @@ def save_new_forecasts():
             filename = hourly_data[1]
         )
         hourly_forecast.save()
-
-def create_daily_forecast(location):
-    """Create daily forecasts for each location.
-    
-    Args: 
-    
-        Location: a string of a location contained in the db
-        
-    Returns:
-    
-        A list containing the info needed to create a Forecast model
-    
-    """
-
-    interval = "daily"
-    filepath = fg_daily.generate_daily_forecast(location, 10)
-
-    return [interval, filepath]
 
 def create_hourly_forecast(location):
     """Create hourly forecasts for each location.
@@ -95,30 +68,6 @@ def create_hourly_forecast(location):
     filepath = fg_hourly.generate_hourly_forecast(location, 24)
 
     return [interval, filepath]
-
-# def test_json_generator():
-#     # hourly_data = create_hourly_forecast("Nazaré")
-#     # hourly_filename = hourly_data[1]
-#     # print(type(hourly_filename))
-#     date = dt.date.today().strftime("%Y-%m-%d")
-
-#     filename = "nazare_2023.03.12_hourly.json"
-#     filepath = os.path.join("test/", filename)
-
-
-#     locations = Location.objects.all()
-#     nazare = locations[0]
-
-#     hourly_forecast = Forecast(
-#                 location = nazare,
-#                 date = date,
-#                 interval = "hourly",
-#                 filename = filepath
-#                 # interval = 'hourly',
-#                 # filename = 'wavare/home/media/test/nazare_hourly_3.11.23'
-#             )
-#     hourly_forecast.save()
-
 
 def delete_old_job_executions(max_age=604_800):
     """Deletes all apscheduler job execution logs older than `max_age`."""
@@ -146,7 +95,6 @@ class Command(BaseCommand):
             trigger=CronTrigger(
                 hour = "00", minute = "00"
             ), #Every day at midnight
-            seconds=30,
             id="Forecasts",
             max_instances=1,
             replace_existing=True,
