@@ -1,5 +1,6 @@
 import logging
 import datetime as dt
+from datetime import timedelta
 import os
 
 # Django
@@ -24,7 +25,6 @@ PATH = os.path.join(MEDIA_ROOT, 'bullpen/')
 
 
 # I want to define a cleanup job that clears entries from 48 hours ago.
-# I want to figure out how to schedule save_new_forecasts to run once a day at midnight
 # I need to get rid of the daily forecast generator
 
 def save_new_forecasts():
@@ -125,10 +125,14 @@ def delete_old_job_executions(max_age=604_800):
     DjangoJobExecution.objects.delete_old_job_executions(max_age)
 
 
-# Finish this later, my head hurts
-def delete_old_forecasts(max_age=172_800)
+def delete_old_forecasts():
     """Deletes all forecasts older than two days."""
-
+    date = dt.date.today().strftime("%Y-%m-%d")
+    age = timedelta(days=2)
+    max_age = date - age
+    delete_qs = Forecast.objects.filter(date__lte=max_age)
+    delete_qs.delete()
+    
 
 class Command(BaseCommand):
     help = "Runs apscheduler."
