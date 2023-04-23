@@ -357,11 +357,6 @@ footer {
   transition: 1.5s;
 }
 
-.locationimg {
-  background-image: url("nazare2.jpg");
-  background-repeat: no-repeat;
-}
-
 .locationoff {
   background-position-x: 300%;
 }
