@@ -41,15 +41,17 @@ def save_new_forecasts():
     date = dt.date.today().strftime("%Y-%m-%d")
 
     for location in locations:
-        location_str = location.location
-        hourly_data = create_hourly_forecast(location_str)
-        hourly_forecast = Forecast(
-            location = location,
-            date = date,
-            interval = hourly_data[0],
-            filename = hourly_data[1]
-        )
-        hourly_forecast.save()
+        if not Forecast.objects.filter(location=location,
+                                       date=date):
+            location_str = location.location
+            hourly_data = create_hourly_forecast(location_str)
+            hourly_forecast = Forecast(
+                location = location,
+                date = date,
+                interval = hourly_data[0],
+                filename = hourly_data[1]
+            )
+            hourly_forecast.save()
 
 def create_hourly_forecast(location):
     """Create hourly forecasts for each location.
@@ -92,9 +94,11 @@ class Command(BaseCommand):
 
         scheduler.add_job(
             save_new_forecasts,
-            trigger=CronTrigger(
-                hour = "00", minute = "00"
-            ), #Every day at midnight
+            # trigger=CronTrigger(
+            #     hour = "00", minute = "00"
+            # ), #Every day at midnight
+            trigger="interval",
+            seconds=30,
             id="Forecasts",
             max_instances=1,
             replace_existing=True,
