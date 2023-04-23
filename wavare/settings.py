@@ -71,8 +71,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = False
 
 ALLOWED_HOSTS = ["wavare.bpirrocco.dev",
-                 "wavare-v1-env.eba-7nc2cbn7.us-east-1.elasticbeanstalk.com",
-                 "172.31.44.152",]
+                 "wavare-v1-env.eba-7nc2cbn7.us-east-1.elasticbeanstalk.com",]
 private_ip = get_linux_ec2_private_ip()
 if private_ip:
    ALLOWED_HOSTS.append(private_ip)
@@ -88,6 +87,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.staticfiles',
+    'django.contrib.home',
     'home',
     # Third Party Apps
     "django_apscheduler",
@@ -186,6 +186,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = 'static'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
