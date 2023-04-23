@@ -30,7 +30,8 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["wavare.bpirrocco.dev"]
+ALLOWED_HOSTS = ["wavare.bpirrocco.dev",
+                 "wavare-v1-env.eba-7nc2cbn7.us-east-1.elasticbeanstalk.com",]
 
 
 # Application definition
