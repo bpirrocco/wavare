@@ -49,7 +49,8 @@ INSTALLED_APPS = [
     "django_apscheduler",
     "pandas",
     "unidecode",
-    "django_cleanup.apps.CleanupConfig"
+    "django_cleanup.apps.CleanupConfig",
+    "gunicorn",
 
 ]
 
