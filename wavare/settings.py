@@ -12,7 +12,47 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from dotenv import load_dotenv
 import os
+import requests
 from pathlib import Path
+
+
+def is_ec2_linux():
+"""Detect if we are running on an EC2 Linux Instance
+   See http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/identify_ec2_instances.html
+"""
+    if os.path.isfile("/sys/hypervisor/uuid"):
+        with open("/sys/hypervisor/uuid") as f:
+            uuid = f.read()
+            return uuid.startswith("ec2")
+    return False
+
+def get_token():
+"""Set the autorization token to live for 6 hours (maximum)"""
+    headers = {
+        'X-aws-ec2-metadata-token-ttl-seconds': '21600',
+    }
+    response = requests.put('http://169.254.169.254/latest/api/token', headers=headers)
+    return response.text
+
+
+def get_linux_ec2_private_ip():
+    """Get the private IP Address of the machine if running on an EC2 linux server.
+See https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instancedata-data-retrieval.html"""
+
+    if not is_ec2_linux():
+        return None
+    try:
+        token = get_token()
+        headers = {
+            'X-aws-ec2-metadata-token': f"{token}",
+        }
+        response = requests.get('http://169.254.169.254/latest/meta-data/local-ipv4', headers=headers)
+        return response.text
+    except:
+        return None
+    finally:
+        if response:
+            response.close()
 
 load_dotenv()
 
@@ -32,6 +72,9 @@ DEBUG = False
 
 ALLOWED_HOSTS = ["wavare.bpirrocco.dev",
                  "wavare-v1-env.eba-7nc2cbn7.us-east-1.elasticbeanstalk.com",]
+private_ip = get_linux_ec2_private_ip()
+if private_ip:
+   ALLOWED_HOSTS.append(private_ip)
 
 
 # Application definition
