@@ -28,9 +28,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["wavare.bpirrocco.dev"]
 
 
 # Application definition
@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'django.contrib.staticfiles',
     'django.contrib.staticfiles',
     'home',
     # Third Party Apps
@@ -81,6 +82,15 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'wavare.wsgi.application'
 
+# Caching
+# Maybe move to memcached in the future
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
+        "LOCATION": "/var/tmp/django_cache",
+    }
+}
+
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
@@ -91,6 +101,8 @@ DATABASES = {
         'NAME': BASE_DIR / os.environ.get('DB_NAME'),
     }
 }
+
+CONN_MAX_AGE = 60
 
 
 # Password validation
@@ -139,6 +151,8 @@ MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
+
+# Logging config
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
@@ -152,3 +166,8 @@ LOGGING = {
         "level": "INFO",
     },
 }
+
+# Secure Cookies
+CSRF_COOKIE_SECURE = True
+
+SESSION_COOKIE_SECURE = True
