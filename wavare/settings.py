@@ -72,7 +72,7 @@ DEBUG = False
 
 ALLOWED_HOSTS = ["wavare.bpirrocco.dev",
                  "wavare-v1-env.eba-7nc2cbn7.us-east-1.elasticbeanstalk.com",
-                 "35.175.230.105",]
+                 "172.31.44.152",]
 private_ip = get_linux_ec2_private_ip()
 if private_ip:
    ALLOWED_HOSTS.append(private_ip)
