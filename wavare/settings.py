@@ -71,7 +71,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = False
 
 ALLOWED_HOSTS = ["wavare.bpirrocco.dev",
-                 "wavare-v1-env.eba-7nc2cbn7.us-east-1.elasticbeanstalk.com",
+                 "wavare-deploy-env.us-east-1.elasticbeanstalk.com",
                  "127.0.0.1"]
 private_ip = get_linux_ec2_private_ip()
 if private_ip:
