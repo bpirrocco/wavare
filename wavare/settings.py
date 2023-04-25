@@ -72,7 +72,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["wavare.bpirrocco.dev",
                  "wavare-deploy-env.us-east-1.elasticbeanstalk.com",
-                 "127.0.0.1"]
+                 "127.0.0.1",
+                 "172.31.24.142",]
 private_ip = get_linux_ec2_private_ip()
 if private_ip:
    ALLOWED_HOSTS.append(private_ip)
@@ -96,6 +97,7 @@ INSTALLED_APPS = [
     "django_cleanup.apps.CleanupConfig",
     "gunicorn",
     "storages",
+    'ebhealthcheck.apps.EBHealthCheckConfig',
 
 ]
 
