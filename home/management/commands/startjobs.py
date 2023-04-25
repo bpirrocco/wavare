@@ -95,7 +95,7 @@ class Command(BaseCommand):
         scheduler.add_job(
             save_new_forecasts,
             trigger=CronTrigger(
-                hour = "18", minute = "00"
+                hour = "19", minute = "20"
             ), #Every day at midnight
             # trigger="interval",
             # seconds=30,
