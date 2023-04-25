@@ -250,9 +250,9 @@ LOGGING = {
 }
 
 # Security and HTTP Settings
-CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = False
 SESSION_COOKIE_SECURE = False
 SECURE_SSL_REDIRECT = False
 
 CORS_ALLOW_ALL_ORIGINS = True
-CSRF_TRUSTED_ORIGINS = [f"http://{os.environ.get('IP_ADDRESS')}"]
+CSRF_TRUSTED_ORIGINS = [f"http://wavare-deploy-env.us-east-1.elasticbeanstalk.com"]
