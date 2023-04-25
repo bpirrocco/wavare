@@ -249,7 +249,10 @@ LOGGING = {
     },
 }
 
-# Secure Cookies
+# Security and HTTP Settings
 CSRF_COOKIE_SECURE = True
-
 SESSION_COOKIE_SECURE = True
+SECURE_SSL_REDIRECT = False
+
+CORS_ALLOW_ALL_ORIGINS = True
+CSRF_TRUSTED_ORIGINS = [f"http://{os.environ.get('IP_ADDRESS')}"]
