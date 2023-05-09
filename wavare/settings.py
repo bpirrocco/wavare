@@ -257,5 +257,5 @@ SESSION_COOKIE_SECURE = True
 SECURE_SSL_REDIRECT = False
 
 CORS_ALLOW_ALL_ORIGINS = True
-CSRF_TRUSTED_ORIGINS = [f"http://wavare-deploy-env.us-east-1.elasticbeanstalk.com",
+CSRF_TRUSTED_ORIGINS = [f"http://wavare.us-east-1.elasticbeanstalk.com",
                          "https://wavare.bpirrocco.dev",]
